@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Briefcase, 
   GraduationCap, 
@@ -20,7 +20,9 @@ import {
   User,
   Menu,
   X,
-  Download
+  Download,
+  ArrowUp,
+  ShieldCheck
 } from 'lucide-react';
 import { 
   PERSONAL_INFO, 
@@ -34,6 +36,20 @@ import {
 const App: React.FC = () => {
   const [projectFilter, setProjectFilter] = useState<'All' | 'Project' | 'Thesis'>('All');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 200) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const filteredProjects = PROJECTS.filter(proj => 
     projectFilter === 'All' ? true : proj.type === projectFilter
@@ -81,6 +97,7 @@ const App: React.FC = () => {
             <a href="#experience" onClick={(e) => scrollToSection(e, 'experience')} className="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">Experience</a>
             <a href="#skills" onClick={(e) => scrollToSection(e, 'skills')} className="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">Skills</a>
             <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')} className="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">Projects</a>
+            <a href="#certifications" onClick={(e) => scrollToSection(e, 'certifications')} className="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">Certifications</a>
             <a 
               href={`mailto:${PERSONAL_INFO.email}`} 
               className="bg-indigo-600 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200"
@@ -101,11 +118,12 @@ const App: React.FC = () => {
 
         {/* Mobile Nav Overlay */}
         <div className={`fixed inset-0 bg-white/95 backdrop-blur-xl md:hidden transition-all duration-500 ease-in-out ${isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
-          <div className="flex flex-col items-center justify-center h-full gap-8 px-6">
+          <div className="flex flex-col items-center justify-center h-full gap-6 px-6">
             <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="text-2xl font-outfit font-extrabold text-slate-900 hover:text-indigo-600 transition-colors">About</a>
             <a href="#experience" onClick={(e) => scrollToSection(e, 'experience')} className="text-2xl font-outfit font-extrabold text-slate-900 hover:text-indigo-600 transition-colors">Experience</a>
             <a href="#skills" onClick={(e) => scrollToSection(e, 'skills')} className="text-2xl font-outfit font-extrabold text-slate-900 hover:text-indigo-600 transition-colors">Skills</a>
             <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')} className="text-2xl font-outfit font-extrabold text-slate-900 hover:text-indigo-600 transition-colors">Projects</a>
+            <a href="#certifications" onClick={(e) => scrollToSection(e, 'certifications')} className="text-2xl font-outfit font-extrabold text-slate-900 hover:text-indigo-600 transition-colors">Certifications</a>
             <a 
               href={`mailto:${PERSONAL_INFO.email}`} 
               onClick={() => setIsMenuOpen(false)}
@@ -136,7 +154,7 @@ const App: React.FC = () => {
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
               <a 
-                href="/cv.pdf" 
+                href="cv.pdf" 
                 target="_blank"
                 className="inline-flex items-center gap-2 bg-white border-2 border-slate-200 text-slate-900 px-8 py-4 rounded-2xl font-bold hover:border-indigo-600 hover:text-indigo-600 transition-all group"
               >
@@ -417,41 +435,76 @@ const App: React.FC = () => {
         </div>
       </section>
 
+      {/* Certifications Section */}
+      <section id="certifications" className="py-24 bg-slate-50 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-sm font-bold text-indigo-600 uppercase tracking-[0.2em] mb-3 font-outfit">Credentials</h2>
+            <h3 className="text-4xl md:text-5xl font-outfit font-extrabold text-slate-900 mb-6">Certifications</h3>
+            <p className="text-slate-500 max-w-2xl mx-auto text-lg">
+              A curated list of my professional certifications and continuous learning milestones.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {CERTIFICATIONS.map((cert, i) => (
+              <div 
+                key={i} 
+                className="group relative bg-white border border-slate-200 p-8 rounded-[2.5rem] hover:border-indigo-600 hover:shadow-2xl hover:shadow-indigo-100 transition-all duration-500 transform hover:-translate-y-2"
+              >
+                <div className="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-indigo-600 transition-colors duration-500">
+                  <Award className="w-7 h-7 text-indigo-600 group-hover:text-white transition-colors" />
+                </div>
+                
+                <h4 className="text-xl font-outfit font-extrabold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors leading-tight">
+                  {cert.name}
+                </h4>
+                
+                <div className="flex flex-wrap items-center gap-3 mt-4">
+                  <span className="px-3 py-1 bg-slate-100 text-slate-600 text-[10px] font-black rounded-lg uppercase tracking-wider">
+                    {cert.provider}
+                  </span>
+                  <span className="flex items-center gap-1.5 text-indigo-600 font-bold text-xs">
+                    <Calendar className="w-3 h-3" />
+                    {cert.year}
+                  </span>
+                </div>
+
+                <div className="mt-6 pt-6 border-t border-slate-50 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <p className="text-xs text-slate-400 font-medium leading-relaxed italic">
+                    {cert.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Academic Section */}
       <section id="education" className="py-24 bg-slate-900 text-white relative overflow-hidden">
         <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-indigo-600 rounded-full blur-[160px] opacity-20 pointer-events-none"></div>
         
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center relative z-10">
-          <div>
-            <h2 className="text-indigo-400 font-bold uppercase tracking-widest mb-10 font-outfit">Education</h2>
-            <div className="bg-white/5 border border-white/10 p-10 rounded-[3rem] backdrop-blur-sm relative group hover:bg-white/10 transition-all duration-500">
-              <div className="absolute -top-6 -right-6 w-16 h-16 bg-indigo-600 rounded-3xl flex items-center justify-center shadow-2xl group-hover:rotate-12 transition-transform">
-                <GraduationCap className="w-8 h-8 text-white" />
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-indigo-400 font-bold uppercase tracking-widest mb-4 font-outfit">Academic Foundation</h2>
+            <h3 className="text-4xl md:text-5xl font-outfit font-extrabold mb-6">Education</h3>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white/5 border border-white/10 p-10 md:p-16 rounded-[4rem] backdrop-blur-sm relative group hover:bg-white/10 transition-all duration-500 flex flex-col md:flex-row items-center gap-10">
+              <div className="w-32 h-32 bg-indigo-600 rounded-[2.5rem] flex items-center justify-center shadow-2xl group-hover:rotate-12 transition-transform shrink-0">
+                <GraduationCap className="w-16 h-16 text-white" />
               </div>
-              <h4 className="text-3xl font-outfit font-extrabold mb-4">{EDUCATION.institution}</h4>
-              <p className="text-xl text-slate-300 font-medium mb-6 leading-relaxed">{EDUCATION.degree}</p>
-              <div className="inline-flex items-center gap-3 text-indigo-400 font-black tracking-widest text-sm bg-indigo-400/10 px-6 py-2 rounded-full uppercase">
-                <Calendar className="w-4 h-4" />
-                {EDUCATION.period}
+              <div className="text-center md:text-left">
+                <h4 className="text-3xl md:text-4xl font-outfit font-extrabold mb-4">{EDUCATION.institution}</h4>
+                <p className="text-xl md:text-2xl text-slate-300 font-medium mb-8 leading-relaxed">{EDUCATION.degree}</p>
+                <div className="inline-flex items-center gap-3 text-indigo-400 font-black tracking-widest text-sm bg-indigo-400/10 px-8 py-3 rounded-full uppercase">
+                  <Calendar className="w-5 h-5" />
+                  {EDUCATION.period}
+                </div>
               </div>
             </div>
-          </div>
-          
-          <div className="space-y-8">
-             <h2 className="text-indigo-400 font-bold uppercase tracking-widest mb-4 font-outfit">Verified Expertise</h2>
-             <div className="grid gap-4">
-               {CERTIFICATIONS.map((cert, i) => (
-                 <div key={i} className="flex gap-6 p-6 rounded-[2rem] bg-white/5 border border-white/10 hover:border-indigo-500/50 hover:bg-white/10 transition-all group">
-                   <div className="w-14 h-14 rounded-2xl bg-indigo-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                     <Award className="w-7 h-7 text-indigo-400" />
-                   </div>
-                   <div>
-                     <h5 className="font-bold text-lg mb-1">{cert.name}</h5>
-                     <p className="text-sm font-black text-slate-400 uppercase tracking-widest">{cert.provider} • {cert.year}</p>
-                   </div>
-                 </div>
-               ))}
-             </div>
           </div>
         </div>
       </section>
@@ -477,7 +530,7 @@ const App: React.FC = () => {
                 Email Me
               </a>
               <a 
-                href="/cv.pdf" 
+                href="cv.pdf" 
                 target="_blank"
                 className="bg-white/10 border border-white/20 backdrop-blur px-12 py-6 rounded-[2rem] font-black text-xl hover:bg-white hover:text-indigo-600 transition-all flex items-center gap-4"
               >
@@ -515,6 +568,17 @@ const App: React.FC = () => {
           </div>
         </div>
       </footer>
+
+      {/* Scroll to Top Button */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-8 right-8 p-4 bg-indigo-600 text-white rounded-2xl shadow-2xl z-[100] transition-all duration-300 transform ${
+          showScrollTop ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
+        } hover:bg-indigo-700 hover:-translate-y-2`}
+        aria-label="Scroll to top"
+      >
+        <ArrowUp className="w-6 h-6" />
+      </button>
     </div>
   );
 };
