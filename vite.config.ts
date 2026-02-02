@@ -1,8 +1,13 @@
-
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
-  base: 'wasi.github.io', // Ensures assets are loaded correctly on GitHub Pages subpaths
-});
+  base: '/wasi.github.io/', 
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+})
