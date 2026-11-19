@@ -1,521 +1,824 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wasi Ul Islam Tasin | QA-minded Implementation Engineer</title>
+    <meta
+      name="description"
+      content="QA-minded Implementation Engineer in Dhaka, Bangladesh. Manual and Selenium automation testing, API troubleshooting, SQL validation, and enterprise ERP, HRIS and healthcare systems."
+    />
+    <meta name="theme-color" content="#f6f7f9" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wasi Ul Islam Tasin | QA-minded Implementation Engineer</title>
-  <meta name="description" content="QA-minded Implementation Engineer in Dhaka, Bangladesh. Manual and Selenium automation testing, API troubleshooting, SQL validation, and enterprise ERP, HRIS and healthcare systems." />
-  <meta name="theme-color" content="#f6f7f9" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Wasi Ul Islam Tasin | QA-minded Implementation Engineer"
+    />
+    <meta
+      property="og:description"
+      content="QA-minded Implementation Engineer. Manual and Selenium automation testing, API troubleshooting, SQL validation, and enterprise ERP, HRIS and healthcare systems."
+    />
+    <meta
+      property="og:url"
+      content="https://koeffingdaal.github.io/wasi.github.io/"
+    />
+    <meta
+      property="og:image"
+      content="https://koeffingdaal.github.io/wasi.github.io/images/Profile.jpg"
+    />
 
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Wasi Ul Islam Tasin | QA-minded Implementation Engineer" />
-  <meta property="og:description" content="QA-minded Implementation Engineer. Manual and Selenium automation testing, API troubleshooting, SQL validation, and enterprise ERP, HRIS and healthcare systems." />
-  <meta property="og:url" content="https://koeffingdaal.github.io/wasi.github.io/" />
-  <meta property="og:image" content="https://koeffingdaal.github.io/wasi.github.io/images/Profile.jpg" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2311151c'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' text-anchor='middle' fill='%23ff7b3a'%3EW%3C/text%3E%3C/svg%3E"
+    />
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2311151c'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' text-anchor='middle' fill='%23ff7b3a'%3EW%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+    <!-- Set the theme before first paint to avoid a flash -->
+    <script>
+      (function () {
+        var t;
+        try {
+          t = localStorage.getItem("theme");
+        } catch (e) {}
+        if (t !== "dark" && t !== "light") {
+          t =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+        }
+        document.documentElement.setAttribute("data-theme", t);
+        document.documentElement.classList.add("js");
+      })();
+    </script>
+    <link rel="stylesheet" href="style.css" />
 
-  <!-- Set the theme before first paint to avoid a flash -->
-  <script>
-    (function () {
-      var t;
-      try { t = localStorage.getItem('theme'); } catch (e) { }
-      if (t !== 'dark' && t !== 'light') {
-        t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Wasi Ul Islam Tasin",
+        "jobTitle": "Implementation Engineer",
+        "email": "mailto:wasi.wui@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Dhaka",
+          "addressCountry": "BD"
+        },
+        "alumniOf": "American International University-Bangladesh",
+        "sameAs": [
+          "https://www.linkedin.com/in/wasi-ul-islam-t-491171162/",
+          "https://github.com/koeffingdaal"
+        ]
       }
-      document.documentElement.setAttribute('data-theme', t);
-      document.documentElement.classList.add('js');
-    })();
-  </script>
-  <link rel="stylesheet" href="style.css" />
+    </script>
+  </head>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Wasi Ul Islam Tasin",
-    "jobTitle": "Implementation Engineer",
-    "email": "mailto:wasi.wui@gmail.com",
-    "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" },
-    "alumniOf": "American International University-Bangladesh",
-    "sameAs": ["https://www.linkedin.com/in/wasi-ul-islam-t-491171162/", "https://github.com/koeffingdaal"]
-  }
-  </script>
-</head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="progress" aria-hidden="true"></div>
 
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="progress" aria-hidden="true"></div>
+    <header class="site-header">
+      <div class="wrap site-header__inner">
+        <a class="brand" href="#home">Wasi Ul Islam Tasin</a>
 
-  <header class="site-header">
-    <div class="wrap site-header__inner">
-      <a class="brand" href="#home">Wasi Ul Islam Tasin</a>
+        <nav id="site-nav" class="site-nav" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
 
-      <nav id="site-nav" class="site-nav" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-      <div class="site-header__tools">
-        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Dark theme" aria-pressed="false">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
-            <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.75" />
-            <path d="M12 3.75a8.25 8.25 0 0 1 0 16.5z" fill="currentColor" />
-          </svg>
-        </button>
-        <button class="icon-btn nav-toggle" id="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
-            <path d="M4 7.5h16M4 12h16M4 16.5h16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <main id="main">
-    <!-- Hero -->
-    <section id="home" class="hero">
-      <div class="wrap hero__grid">
-        <div class="hero__text">
-          <h1 class="hero__name">
-            <span class="hero__line"><span>Wasi Ul Islam</span></span>
-            <span class="hero__line"><span>Tasin</span></span>
-          </h1>
-          <p class="hero__role">QA-minded Implementation Engineer</p>
-          <p class="hero__lede">
-            3.5+ years delivering enterprise ERP, HRIS, and healthcare
-            systems, turning client requirements into verified, working
-            software.
-          </p>
-          <div class="hero__actions">
-            <a class="btn btn--solid" href="#contact">Contact me</a>
-            <a class="btn btn--ghost" href="Wasi-Ul-Islam-Tasin.pdf" download>Download CV</a>
-          </div>
-          <ul class="hero__links">
-            <li><a href="https://www.linkedin.com/in/wasi-ul-islam-t-491171162/" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="https://github.com/koeffingdaal" target="_blank" rel="noopener">GitHub</a></li>
-            <li><a href="mailto:wasi.wui@gmail.com">Email</a></li>
-          </ul>
-        </div>
-
-        <figure class="hero__photo">
-          <img src="images/Profile.jpg" alt="Wasi Ul Islam Tasin" width="1080" height="1094" />
-        </figure>
-      </div>
-
-      <!-- Career timeline -->
-      <div class="wrap">
-        <div class="plot" id="plot" hidden>
-          <div class="plot__head">
-            <h2 class="plot__title">Career, plotted</h2>
-            <p class="plot__note">Study and work on one timeline. Select a row to jump to its details. Education dates are year-level.</p>
-          </div>
-          <div class="plot__chart" id="plot-chart"></div>
+        <div class="site-header__tools">
+          <button
+            class="icon-btn"
+            id="theme-toggle"
+            type="button"
+            aria-label="Dark theme"
+            aria-pressed="false"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="8.25"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+              />
+              <path d="M12 3.75a8.25 8.25 0 0 1 0 16.5z" fill="currentColor" />
+            </svg>
+          </button>
+          <button
+            class="icon-btn nav-toggle"
+            id="nav-toggle"
+            type="button"
+            aria-label="Menu"
+            aria-expanded="false"
+            aria-controls="site-nav"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                d="M4 7.5h16M4 12h16M4 16.5h16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
         </div>
       </div>
-    </section>
+    </header>
 
-    <!-- About -->
-    <section id="about" class="section">
-      <div class="wrap section__grid">
-        <header class="section__head">
-          <h2 class="section__title">About</h2>
-        </header>
-
-        <div class="section__body">
-          <p class="about__summary">
-            QA-minded Implementation Engineer with 3.5+ years delivering
-            enterprise ERP, HRIS, and healthcare systems, turning client
-            requirements into verified, working software. Hands-on with manual
-            and Selenium automation testing, defect tracking in JIRA and
-            Bugzilla, RESTful API troubleshooting, and SQL-based data
-            validation. C#, ASP.NET, and Python background lets me trace a bug
-            to its source instead of reporting only the symptom. Known for
-            99.9% data accuracy, clear defect documentation, and same-day
-            delivery under pressure, working daily with English-speaking
-            clients and cross-functional teams. Building on this foundation
-            with Playwright, k6, and AI-assisted testing.
-          </p>
-
-          <!-- Tab System for Education & Certifications -->
-          <div class="tab-container">
-            <div class="tab-buttons">
-              <button class="tab-btn active" data-tab="education">Education</button>
-              <button class="tab-btn" data-tab="certifications">Certifications</button>
+    <main id="main">
+      <!-- Hero -->
+      <section id="home" class="hero">
+        <div class="wrap hero__grid">
+          <div class="hero__text">
+            <h1 class="hero__name">
+              <span class="hero__line"><span>Wasi Ul Islam</span></span>
+              <span class="hero__line"><span>Tasin</span></span>
+            </h1>
+            <p class="hero__role">QA-minded Implementation Engineer</p>
+            <p class="hero__lede">
+              3.5+ years delivering enterprise ERP, HRIS, and healthcare
+              systems, turning client requirements into verified, working
+              software.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--solid" href="#contact">Contact me</a>
+              <a class="btn btn--ghost" href="Wasi-Ul-Islam-Tasin.pdf" download
+                >Download CV</a
+              >
             </div>
-
-            <!-- Education Panel -->
-            <div id="education" class="tab-panel active">
-              <ul class="edu">
-                <!-- ADDED data-chart-role AND data-chart-tenure FOR THE TIMELINE -->
-                <li class="edu__item" id="edu-aiub" data-timeline data-start="2018-01" data-end="2022-12" data-precision="year"
-                  data-chart-label="American International University-Bangladesh"
-                  data-chart-role="BSc in Computer Science & Engineering"
-                  data-chart-tenure="2018 – 2022">
-                  <div>
-                    <h4 class="edu__degree">BSc in Computer Science &amp; Engineering</h4>
-                    <p class="edu__school">American International University - Bangladesh</p>
-                  </div>
-                  <p class="edu__meta"><span>2018 – 2022</span><span>CGPA 3.43 / 4.00</span></p>
-                </li>
-                <li class="edu__item">
-                  <div>
-                    <h4 class="edu__degree">HSC in Science</h4>
-                    <p class="edu__school">Ideal College, Dhanmondi</p>
-                  </div>
-                  <p class="edu__meta"><span>2015 – 2017</span><span>GPA 3.92 / 5.00</span></p>
-                </li>
-                <li class="edu__item">
-                  <div>
-                    <h4 class="edu__degree">SSC in Science</h4>
-                    <p class="edu__school">Model Academy</p>
-                  </div>
-                  <p class="edu__meta"><span>2015</span><span>GPA 4.78 / 5.00</span></p>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Certifications Panel -->
-            <div id="certifications" class="tab-panel">
-              <ul class="certs">
-                <li class="certs__item">
-                  <div>
-                    <h4 class="certs__name">Project Management Foundations: Small Projects</h4>
-                    <p class="certs__note">Practical knowledge in managing tasks, deadlines, and stakeholder expectations.</p>
-                  </div>
-                  <p class="certs__meta"><span>LinkedIn Learning</span><span>2024</span></p>
-                </li>
-                <li class="certs__item">
-                  <div>
-                    <h4 class="certs__name">Data Management and Analysis in Data Science</h4>
-                    <p class="certs__note">Skills in analyzing large datasets and preparing insights for decision-making.</p>
-                  </div>
-                  <p class="certs__meta"><span>Coursera</span><span>2024</span></p>
-                </li>
-                <li class="certs__item">
-                  <div>
-                    <h4 class="certs__name">AI Driven SQA: Manual &amp; Automation Testing</h4>
-                    <p class="certs__note">Manual testing, test automation, and AI-assisted QA workflows.</p>
-                  </div>
-                  <p class="certs__meta"><span>Ostad</span><span>2024</span></p>
-                </li>
-                <li class="certs__item">
-                  <div>
-                    <h4 class="certs__name">ANGULAR and ASP.NET Core REST API - Real World Application</h4>
-                    <p class="certs__note">Learn and Create Full-Stack Web Applications with Angular and EF Core with the ASP.NET Core Web API.</p>
-                  </div>
-                  <p class="certs__meta"><span>Udemy</span><span>2023</span></p>
-                </li>
-              </ul>
-            </div>
+            <ul class="hero__links">
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/wasi-ul-islam-t-491171162/"
+                  target="_blank"
+                  rel="noopener"
+                  >LinkedIn</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://github.com/koeffingdaal"
+                  target="_blank"
+                  rel="noopener"
+                  >GitHub</a
+                >
+              </li>
+              <li><a href="mailto:wasi.wui@gmail.com">Email</a></li>
+            </ul>
           </div>
 
+          <figure class="hero__photo">
+            <img
+              src="images/Profile.jpg"
+              alt="Wasi Ul Islam Tasin"
+              width="1080"
+              height="1094"
+            />
+          </figure>
         </div>
-      </div>
-    </section>
 
-    <!-- Experience -->
-    <section id="experience" class="section">
-      <div class="wrap section__grid">
-        <header class="section__head">
-          <h2 class="section__title">Experience</h2>
-        </header>
-
-        <div class="section__body">
-          <!-- ADDED data-chart-role AND data-chart-tenure FOR THE TIMELINE -->
-          <article class="role" id="role-quantanite" data-timeline data-start="2024-02" data-end="2024-09" 
-                   data-chart-label="Quantanite Bangladesh Ltd"
-                   data-chart-role="Senior Associate"
-                   data-chart-tenure="Feb 2024 – Sep 2024">
-            <div class="role__when">
-              <p class="role__dates">Feb 2024 – Sep 2024</p>
-              <p class="role__duration" data-duration></p>
-            </div>
-            <div class="role__body">
-              <h3 class="role__title">Senior Associate</h3>
-              <p class="role__org">Quantanite Bangladesh Ltd</p>
-              <ul class="role__duties">
-                <li>Entered and verified 1,200+ records per shift in internal systems and databases for a major U.S. client, maintaining 99.9% accuracy through strong attention to detail and checking each record for completeness, correctness, and consistency.</li>
-                <li>Cross-verified data across sources to ensure 100% adherence to client requirements and specifications, identifying and correcting discrepancies the same day and cutting clarification follow-ups by 30%.</li>
-                <li>Multitasked and worked independently to meet strict deadlines, finishing ahead of schedule on 95% of workdays without compromising quality standards.</li>
-                <li>Collaborated in English with project coordinators and team leads to resolve open questions, cutting average issue-resolution time by 25% while keeping same-day completion.</li>
-                <li>Handled client data professionally and in line with confidentiality and data security policies.</li>
-              </ul>
-              <p class="role__skills"><span class="role__skills-label">Skills applied</span> Data entry, Data verification, Quality control (QC), Data processing, Stakeholder communication</p>
-            </div>
-          </article>
-
-          <article class="role" id="role-mediklaud" data-timeline data-start="2022-11" data-end="2024-02" 
-                   data-chart-label="Global MediKlaud (BD) Ltd"
-                   data-chart-role="Implementation Engineer"
-                   data-chart-tenure="Nov 2022 – Feb 2024">
-            <div class="role__when">
-              <p class="role__dates">Nov 2022 – Feb 2024</p>
-              <p class="role__duration" data-duration></p>
-            </div>
-            <div class="role__body">
-              <h3 class="role__title">Implementation Engineer</h3>
-              <p class="role__org">Global MediKlaud (BD) Ltd</p>
-              <ul class="role__duties">
-                <li>Deployed and configured hospital ERP systems against client requirements, analyzing end-user requirements and working with cross-functional teams to deliver them.</li>
-                <li>Logged, tracked, and resolved end-user issues in JIRA and Bugzilla through the full ticket life cycle, using data-driven diagnosis to keep daily operations running smoothly.</li>
-                <li>Analyzed operational data across hospital ERP systems to diagnose workflow gaps and recommend targeted improvements.</li>
-                <li>Partnered with project managers and leadership to align ERP outputs with organizational needs, and documented and delivered monthly KPI reports to stakeholders.</li>
-              </ul>
-              <p class="role__skills"><span class="role__skills-label">Skills applied</span> Hospital ERP, JIRA, Bugzilla, Data analysis, KPI reporting</p>
-            </div>
-          </article>
-
-          <article class="role" id="role-hsenid" data-timeline data-start="2022-05" data-end="2022-10" 
-                   data-chart-label="hSenid Business Solutions PLC"
-                   data-chart-role="Implementation Engineer"
-                   data-chart-tenure="May 2022 – Oct 2022">
-            <div class="role__when">
-              <p class="role__dates">May 2022 – Oct 2022</p>
-              <p class="role__duration" data-duration></p>
-            </div>
-            <div class="role__body">
-              <h3 class="role__title">Implementation Engineer</h3>
-              <p class="role__org">hSenid Business Solutions PLC</p>
-              <ul class="role__duties">
-                <li>Configured and maintained client CRM/HRIS reporting environments, resolving configuration and data-access issues to ensure accurate employee, payroll, and engagement data for KPI tracking.</li>
-                <li>Designed and delivered 80+ Crystal Reports and Power BI dashboards, improving leadership visibility into payroll trends and workforce productivity and reducing manual data errors by 15%.</li>
-                <li>Built automated SQL jobs and real-time alerts for data validation, proactively flagging compliance and performance issues and cutting issue-resolution time by 20% across HR and finance teams.</li>
-                <li>Communicated clearly with sales, operations, and HR managers, translating raw data into actionable insights for resource planning and process optimization.</li>
-              </ul>
-              <p class="role__skills"><span class="role__skills-label">Skills applied</span> CRM/HRIS, Crystal Reports, Power BI, SQL, Dashboard design</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills -->
-    <section id="skills" class="section">
-      <div class="wrap section__grid">
-        <header class="section__head">
-          <h2 class="section__title">Skills</h2>
-        </header>
-
-        <div class="section__body">
-          <dl class="skills">
-            <div class="skills__row">
-              <dt>Software testing &amp; QA</dt>
-              <dd>Manual testing, STLC, defect life cycle, test case design, requirement analysis, regression testing, defect reporting, test documentation, Selenium automation testing, SQL data validation, Playwright (TypeScript), Postman, k6, OWASP ZAP, GitHub Actions; AI Driven SQA certification (Ostad).</dd>
-            </div>
-            <div class="skills__row">
-              <dt>AI-assisted testing</dt>
-              <dd>Generating test cases, test data, and bug reports with ChatGPT, Claude, and Gemini, and validating the output manually.</dd>
-            </div>
-            <div class="skills__row">
-              <dt>API &amp; debugging</dt>
-              <dd>RESTful API troubleshooting, client-server issue diagnosis, defect tracking in JIRA and Bugzilla.</dd>
-            </div>
-            <div class="skills__row">
-              <dt>Data work</dt>
-              <dd>Data entry, Data verification, Quality control (QC), Data processing, Reporting, Documentation, Stakeholder communication.</dd>
-            </div>
-            <div class="skills__row">
-              <dt>AI &amp; tools</dt>
-              <dd>ChatGPT, Claude, Gemini, Google AI Studio, MS Office (Excel, Word, PowerPoint), Power BI, Crystal Reports, JIRA, Bugzilla, VS Code.</dd>
-            </div>
-            <div class="skills__row">
-              <dt>Languages &amp; databases</dt>
-              <dd>SQL (MS SQL Server), MySQL, Python, C#, ASP.NET Core/MVC, Entity Framework Core.</dd>
-            </div>
-            <div class="skills__row">
-              <dt>Systems</dt>
-              <dd>ERP, HRIS, Hospital ERP, payroll systems.</dd>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects" class="section">
-      <div class="wrap section__grid">
-        <header class="section__head">
-          <h2 class="section__title">Projects &amp; Thesis</h2>
-        </header>
-
-        <div class="section__body">
-          
-          <!-- Interactive Filter Buttons -->
-          <div class="project-filters">
-            <button class="filter-btn active" data-filter="all">All Work</button>
-            <button class="filter-btn" data-filter="project">Projects</button>
-            <button class="filter-btn" data-filter="thesis">Thesis</button>
-          </div>
-
-          <div class="projects-grid">
-            
-            <!-- Card 1: Thesis -->
-            <article class="project-card" data-category="thesis">
-              <div class="project-card__header">
-                <h3 class="project-card__title">Data Mining for Fraud Detection</h3>
-                <span class="project-card__badge project-card__badge--thesis">THESIS</span>
-              </div>
-              <p class="project-card__desc">
-                Developed ML models using classification and clustering to identify fraudulent transactions in large-scale financial data. Applied feature engineering and data preprocessing to ensure data quality, accuracy, and reliability.
+        <!-- Career timeline -->
+        <div class="wrap">
+          <div class="plot" id="plot" hidden>
+            <div class="plot__head">
+              <h2 class="plot__title">Career, plotted</h2>
+              <p class="plot__note">
+                Study and work on one timeline. Select a row to jump to its
+                details. Education dates are year-level.
               </p>
-              <div class="project-card__tags">
-                <span>Python</span>
-                <span>Scikit-learn</span>
-                <span>Pandas</span>
-                <span>Tensorflow</span>
-              </div>
-              <div class="project-card__metrics">
-                <div class="metric">
-                  <span class="metric__label">Accuracy:</span>
-                  <span class="metric__value">High</span>
-                </div>
-                <div class="metric">
-                  <span class="metric__label">Precision:</span>
-                  <span class="metric__value">Optimized</span>
-                </div>
-              </div>
-            </article>
+            </div>
+            <div class="plot__chart" id="plot-chart"></div>
+          </div>
+        </div>
+      </section>
 
-            <!-- Card 2: QA Framework -->
-            <article class="project-card" data-category="project">
-              <div class="project-card__header">
-                <h3 class="project-card__title">End-to-End QA Automation Framework</h3>
-                <span class="project-card__badge project-card__badge--project">PROJECT</span>
+      <!-- About -->
+      <section id="about" class="section">
+        <div class="wrap section__grid">
+          <header class="section__head">
+            <h2 class="section__title">About</h2>
+          </header>
+
+          <div class="section__body">
+            <p class="about__summary">
+              QA-minded Implementation Engineer with 3.5+ years delivering
+              enterprise ERP, HRIS, and healthcare systems, turning client
+              requirements into verified, working software. Hands-on with manual
+              and Selenium automation testing, defect tracking in JIRA and
+              Bugzilla, RESTful API troubleshooting, and SQL-based data
+              validation. C#, ASP.NET, and Python background lets me trace a bug
+              to its source instead of reporting only the symptom. Known for
+              99.9% data accuracy, clear defect documentation, and same-day
+              delivery under pressure, working daily with English-speaking
+              clients and cross-functional teams. Building on this foundation
+              with Playwright, k6, and AI-assisted testing.
+            </p>
+
+            <!-- Tab System for Education & Certifications -->
+            <div class="tab-container">
+              <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="education">
+                  Education
+                </button>
+                <button class="tab-btn" data-tab="certifications">
+                  Certifications
+                </button>
               </div>
-              <p class="project-card__desc">
-                Built an end-to-end QA framework on the OrangeHRM demo app: Playwright UI tests with the Page Object Model, fixtures, and parallel runs, plus Postman API tests, run on every push through a GitHub Actions pipeline.
-              </p>
-              <div class="project-card__tags">
-                <span>Playwright</span>
-                <span>TypeScript</span>
-                <span>k6</span>
-                <span>GitHub Actions</span>
-              </div>
-              <div class="project-card__features">
-                <p class="features-title">✨ Key Features:</p>
-                <ul>
-                  <li>UI Automation (POM)</li>
-                  <li>API Testing</li>
-                  <li>CI/CD Integration</li>
+
+              <!-- Education Panel -->
+              <div id="education" class="tab-panel active">
+                <ul class="edu">
+                  <!-- ADDED data-chart-role AND data-chart-tenure FOR THE TIMELINE -->
+                  <li
+                    class="edu__item"
+                    id="edu-aiub"
+                    data-timeline
+                    data-start="2018-01"
+                    data-end="2022-12"
+                    data-precision="year"
+                    data-chart-label="American International University-Bangladesh"
+                    data-chart-role="BSc in Computer Science & Engineering"
+                    data-chart-tenure="2018 – 2022"
+                  >
+                    <div>
+                      <h4 class="edu__degree">
+                        BSc in Computer Science &amp; Engineering
+                      </h4>
+                      <p class="edu__school">
+                        American International University - Bangladesh
+                      </p>
+                    </div>
+                    <p class="edu__meta">
+                      <span>2018 – 2022</span><span>CGPA 3.43 / 4.00</span>
+                    </p>
+                  </li>
+                  <li class="edu__item">
+                    <div>
+                      <h4 class="edu__degree">HSC in Science</h4>
+                      <p class="edu__school">Ideal College, Dhanmondi</p>
+                    </div>
+                    <p class="edu__meta">
+                      <span>2015 – 2017</span><span>GPA 3.92 / 5.00</span>
+                    </p>
+                  </li>
+                  <li class="edu__item">
+                    <div>
+                      <h4 class="edu__degree">SSC in Science</h4>
+                      <p class="edu__school">Model Academy</p>
+                    </div>
+                    <p class="edu__meta">
+                      <span>2015</span><span>GPA 4.78 / 5.00</span>
+                    </p>
+                  </li>
                 </ul>
               </div>
-            </article>
 
-            <!-- Card 3: Data Validation Tool -->
-            <article class="project-card" data-category="project">
-              <div class="project-card__header">
-                <h3 class="project-card__title">SQL Data Validation Tool</h3>
-                <span class="project-card__badge project-card__badge--project">PROJECT</span>
-              </div>
-              <p class="project-card__desc">
-                Engineered an automated SQL validation script to cross-reference payroll records between two databases, flagging discrepancies in real-time and reducing manual auditing time by 80%.
-              </p>
-              <div class="project-card__tags">
-                <span>Python</span>
-                <span>MS SQL Server</span>
-                <span>Pandas</span>
-              </div>
-              <div class="project-card__metrics">
-                <div class="metric">
-                  <span class="metric__label">Efficiency:</span>
-                  <span class="metric__value">+80%</span>
-                </div>
-                <div class="metric">
-                  <span class="metric__label">Errors Caught:</span>
-                  <span class="metric__value">100%</span>
-                </div>
-              </div>
-            </article>
-
-            <!-- Card 4: Healthcare ERP Testing -->
-            <article class="project-card" data-category="project">
-              <div class="project-card__header">
-                <h3 class="project-card__title">Healthcare ERP Test Suite</h3>
-                <span class="project-card__badge project-card__badge--project">PROJECT</span>
-              </div>
-              <p class="project-card__desc">
-                Developed a comprehensive manual test suite for a hospital ERP deployment, covering patient registration, billing, and pharmacy modules. Documented 200+ test cases and streamlined the defect reporting process in JIRA.
-              </p>
-              <div class="project-card__tags">
-                <span>Manual Testing</span>
-                <span>JIRA</span>
-                <span>Hospital ERP</span>
-              </div>
-              <div class="project-card__features">
-                <p class="features-title">✨ Key Features:</p>
-                <ul>
-                  <li>Test Case Design</li>
-                  <li>Defect Tracking</li>
-                  <li>Regression Testing</li>
+              <!-- Certifications Panel -->
+              <div id="certifications" class="tab-panel">
+                <ul class="certs">
+                  <li class="certs__item">
+                    <div>
+                      <h4 class="certs__name">
+                        Project Management Foundations: Small Projects
+                      </h4>
+                      <p class="certs__note">
+                        Practical knowledge in managing tasks, deadlines, and
+                        stakeholder expectations.
+                      </p>
+                    </div>
+                    <p class="certs__meta">
+                      <span>LinkedIn Learning</span><span>2024</span>
+                    </p>
+                  </li>
+                  <li class="certs__item">
+                    <div>
+                      <h4 class="certs__name">
+                        Data Management and Analysis in Data Science
+                      </h4>
+                      <p class="certs__note">
+                        Skills in analyzing large datasets and preparing
+                        insights for decision-making.
+                      </p>
+                    </div>
+                    <p class="certs__meta">
+                      <span>Coursera</span><span>2024</span>
+                    </p>
+                  </li>
+                  <li class="certs__item">
+                    <div>
+                      <h4 class="certs__name">
+                        AI Driven SQA: Manual &amp; Automation Testing
+                      </h4>
+                      <p class="certs__note">
+                        Manual testing, test automation, and AI-assisted QA
+                        workflows.
+                      </p>
+                    </div>
+                    <p class="certs__meta">
+                      <span>Ostad</span><span>2024</span>
+                    </p>
+                  </li>
+                  <li class="certs__item">
+                    <div>
+                      <h4 class="certs__name">
+                        ANGULAR and ASP.NET Core REST API - Real World
+                        Application
+                      </h4>
+                      <p class="certs__note">
+                        Learn and Create Full-Stack Web Applications with
+                        Angular and EF Core with the ASP.NET Core Web API.
+                      </p>
+                    </div>
+                    <p class="certs__meta">
+                      <span>Udemy</span><span>2023</span>
+                    </p>
+                  </li>
                 </ul>
               </div>
-            </article>
-
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Contact -->
-    <section id="contact" class="section">
-      <div class="wrap section__grid">
-        <header class="section__head">
-          <h2 class="section__title">Contact</h2>
-        </header>
+      <!-- Experience -->
+      <section id="experience" class="section">
+        <div class="wrap section__grid">
+          <header class="section__head">
+            <h2 class="section__title">Experience</h2>
+          </header>
 
-        <div class="section__body">
-          <p class="contact__lead">Available for opportunities.</p>
-          <a class="contact__email" href="mailto:wasi.wui@gmail.com">wasi.wui@gmail.com</a>
+          <div class="section__body">
+            <!-- ADDED data-chart-role AND data-chart-tenure FOR THE TIMELINE -->
+            <article
+              class="role"
+              id="role-quantanite"
+              data-timeline
+              data-start="2024-02"
+              data-end="2024-09"
+              data-chart-label="Quantanite Bangladesh Ltd"
+              data-chart-role="Senior Associate"
+              data-chart-tenure="Feb 2024 – Sep 2024"
+            >
+              <div class="role__when">
+                <p class="role__dates">Feb 2024 – Sep 2024</p>
+                <p class="role__duration" data-duration></p>
+              </div>
+              <div class="role__body">
+                <h3 class="role__title">Senior Associate</h3>
+                <p class="role__org">Quantanite Bangladesh Ltd</p>
+                <ul class="role__duties">
+                  <li>
+                    Entered and verified 1,200+ records per shift in internal
+                    systems and databases for a major U.S. client, maintaining
+                    99.9% accuracy through strong attention to detail and
+                    checking each record for completeness, correctness, and
+                    consistency.
+                  </li>
+                  <li>
+                    Cross-verified data across sources to ensure 100% adherence
+                    to client requirements and specifications, identifying and
+                    correcting discrepancies the same day and cutting
+                    clarification follow-ups by 30%.
+                  </li>
+                  <li>
+                    Multitasked and worked independently to meet strict
+                    deadlines, finishing ahead of schedule on 95% of workdays
+                    without compromising quality standards.
+                  </li>
+                  <li>
+                    Collaborated in English with project coordinators and team
+                    leads to resolve open questions, cutting average
+                    issue-resolution time by 25% while keeping same-day
+                    completion.
+                  </li>
+                  <li>
+                    Handled client data professionally and in line with
+                    confidentiality and data security policies.
+                  </li>
+                </ul>
+                <p class="role__skills">
+                  <span class="role__skills-label">Skills applied</span> Data
+                  entry, Data verification, Quality control (QC), Data
+                  processing, Stakeholder communication
+                </p>
+              </div>
+            </article>
 
-          <dl class="contact__facts">
-            <div>
-              <dt>Location</dt>
-              <dd>Dhaka, Bangladesh</dd>
-            </div>
-            <div>
-              <dt>Phone</dt>
-              <dd><a href="tel:+8801644328054">+8801644328054</a></dd>
-            </div>
-          </dl>
+            <article
+              class="role"
+              id="role-mediklaud"
+              data-timeline
+              data-start="2022-11"
+              data-end="2024-02"
+              data-chart-label="Global MediKlaud (BD) Ltd"
+              data-chart-role="Implementation Engineer"
+              data-chart-tenure="Nov 2022 – Feb 2024"
+            >
+              <div class="role__when">
+                <p class="role__dates">Nov 2022 – Feb 2024</p>
+                <p class="role__duration" data-duration></p>
+              </div>
+              <div class="role__body">
+                <h3 class="role__title">Implementation Engineer</h3>
+                <p class="role__org">Global MediKlaud (BD) Ltd</p>
+                <ul class="role__duties">
+                  <li>
+                    Deployed and configured hospital ERP systems against client
+                    requirements, analyzing end-user requirements and working
+                    with cross-functional teams to deliver them.
+                  </li>
+                  <li>
+                    Logged, tracked, and resolved end-user issues in JIRA and
+                    Bugzilla through the full ticket life cycle, using
+                    data-driven diagnosis to keep daily operations running
+                    smoothly.
+                  </li>
+                  <li>
+                    Analyzed operational data across hospital ERP systems to
+                    diagnose workflow gaps and recommend targeted improvements.
+                  </li>
+                  <li>
+                    Partnered with project managers and leadership to align ERP
+                    outputs with organizational needs, and documented and
+                    delivered monthly KPI reports to stakeholders.
+                  </li>
+                </ul>
+                <p class="role__skills">
+                  <span class="role__skills-label">Skills applied</span>
+                  Hospital ERP, JIRA, Bugzilla, Data analysis, KPI reporting
+                </p>
+              </div>
+            </article>
 
-          <h3 class="subhead">References</h3>
-          <ul class="refs">
-            <li class="refs__item">
-              <h4 class="refs__name">Habibur Rahman</h4>
-              <p class="refs__role">Head of Business Operations, Quantanite Bangladesh Ltd</p>
-              <a class="refs__mail" href="mailto:Habibur.Rahman@quantanite.com">Habibur.Rahman@quantanite.com</a>
-            </li>
-            <li class="refs__item">
-              <h4 class="refs__name">Omar Faruk</h4>
-              <p class="refs__role">Project Manager, hSenid Business Solutions PLC</p>
-              <a class="refs__mail" href="mailto:omar.f@hsenidbiz.com">omar.f@hsenidbiz.com</a>
-            </li>
-          </ul>
+            <article
+              class="role"
+              id="role-hsenid"
+              data-timeline
+              data-start="2022-05"
+              data-end="2022-10"
+              data-chart-label="hSenid Business Solutions PLC"
+              data-chart-role="Implementation Engineer"
+              data-chart-tenure="May 2022 – Oct 2022"
+            >
+              <div class="role__when">
+                <p class="role__dates">May 2022 – Oct 2022</p>
+                <p class="role__duration" data-duration></p>
+              </div>
+              <div class="role__body">
+                <h3 class="role__title">Implementation Engineer</h3>
+                <p class="role__org">hSenid Business Solutions PLC</p>
+                <ul class="role__duties">
+                  <li>
+                    Configured and maintained client CRM/HRIS reporting
+                    environments, resolving configuration and data-access issues
+                    to ensure accurate employee, payroll, and engagement data
+                    for KPI tracking.
+                  </li>
+                  <li>
+                    Designed and delivered 80+ Crystal Reports and Power BI
+                    dashboards, improving leadership visibility into payroll
+                    trends and workforce productivity and reducing manual data
+                    errors by 15%.
+                  </li>
+                  <li>
+                    Built automated SQL jobs and real-time alerts for data
+                    validation, proactively flagging compliance and performance
+                    issues and cutting issue-resolution time by 20% across HR
+                    and finance teams.
+                  </li>
+                  <li>
+                    Communicated clearly with sales, operations, and HR
+                    managers, translating raw data into actionable insights for
+                    resource planning and process optimization.
+                  </li>
+                </ul>
+                <p class="role__skills">
+                  <span class="role__skills-label">Skills applied</span>
+                  CRM/HRIS, Crystal Reports, Power BI, SQL, Dashboard design
+                </p>
+              </div>
+            </article>
+          </div>
         </div>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills" class="section">
+        <div class="wrap section__grid">
+          <header class="section__head">
+            <h2 class="section__title">Skills</h2>
+          </header>
+
+          <div class="section__body">
+            <dl class="skills">
+              <div class="skills__row">
+                <dt>Software testing &amp; QA</dt>
+                <dd>
+                  Manual testing, STLC, defect life cycle, test case design,
+                  requirement analysis, regression testing, defect reporting,
+                  test documentation, Selenium automation testing, SQL data
+                  validation, Playwright (TypeScript), Postman, k6, OWASP ZAP,
+                  GitHub Actions; AI Driven SQA certification (Ostad).
+                </dd>
+              </div>
+              <div class="skills__row">
+                <dt>AI-assisted testing</dt>
+                <dd>
+                  Generating test cases, test data, and bug reports with
+                  ChatGPT, Claude, and Gemini, and validating the output
+                  manually.
+                </dd>
+              </div>
+              <div class="skills__row">
+                <dt>API &amp; debugging</dt>
+                <dd>
+                  RESTful API troubleshooting, client-server issue diagnosis,
+                  defect tracking in JIRA and Bugzilla.
+                </dd>
+              </div>
+              <div class="skills__row">
+                <dt>Data work</dt>
+                <dd>
+                  Data entry, Data verification, Quality control (QC), Data
+                  processing, Reporting, Documentation, Stakeholder
+                  communication.
+                </dd>
+              </div>
+              <div class="skills__row">
+                <dt>AI &amp; tools</dt>
+                <dd>
+                  ChatGPT, Claude, Gemini, Google AI Studio, MS Office (Excel,
+                  Word, PowerPoint), Power BI, Crystal Reports, JIRA, Bugzilla,
+                  VS Code.
+                </dd>
+              </div>
+              <div class="skills__row">
+                <dt>Languages &amp; databases</dt>
+                <dd>
+                  SQL (MS SQL Server), MySQL, Python, C#, ASP.NET Core/MVC,
+                  Entity Framework Core.
+                </dd>
+              </div>
+              <div class="skills__row">
+                <dt>Systems</dt>
+                <dd>ERP, HRIS, Hospital ERP, payroll systems.</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects" class="section">
+        <div class="wrap section__grid">
+          <header class="section__head">
+            <h2 class="section__title">Projects &amp; Thesis</h2>
+          </header>
+
+          <div class="section__body">
+            <!-- Interactive Filter Buttons -->
+            <div class="project-filters">
+              <button class="filter-btn active" data-filter="all">
+                All Work
+              </button>
+              <button class="filter-btn" data-filter="project">Projects</button>
+              <button class="filter-btn" data-filter="thesis">Thesis</button>
+            </div>
+
+            <div class="projects-grid">
+              <!-- Card 1: Thesis -->
+              <article class="project-card" data-category="thesis">
+                <div class="project-card__header">
+                  <h3 class="project-card__title">
+                    Data Mining for Fraud Detection
+                  </h3>
+                  <span class="project-card__badge project-card__badge--thesis"
+                    >THESIS</span
+                  >
+                </div>
+                <p class="project-card__desc">
+                  Developed ML models using classification and clustering to
+                  identify fraudulent transactions in large-scale financial
+                  data. Applied feature engineering and data preprocessing to
+                  ensure data quality, accuracy, and reliability.
+                </p>
+                <div class="project-card__tags">
+                  <span>Python</span>
+                  <span>Scikit-learn</span>
+                  <span>Pandas</span>
+                  <span>Tensorflow</span>
+                </div>
+                <div class="project-card__metrics">
+                  <div class="metric">
+                    <span class="metric__label">Accuracy:</span>
+                    <span class="metric__value">High</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric__label">Precision:</span>
+                    <span class="metric__value">Optimized</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 2: QA Framework -->
+              <article class="project-card" data-category="project">
+                <div class="project-card__header">
+                  <h3 class="project-card__title">
+                    End-to-End QA Automation Framework
+                  </h3>
+                  <span class="project-card__badge project-card__badge--project"
+                    >PROJECT</span
+                  >
+                </div>
+                <p class="project-card__desc">
+                  Built an end-to-end QA framework on the OrangeHRM demo app:
+                  Playwright UI tests with the Page Object Model, fixtures, and
+                  parallel runs, plus Postman API tests, run on every push
+                  through a GitHub Actions pipeline.
+                </p>
+                <div class="project-card__tags">
+                  <span>Playwright</span>
+                  <span>TypeScript</span>
+                  <span>k6</span>
+                  <span>GitHub Actions</span>
+                </div>
+                <div class="project-card__features">
+                  <p class="features-title">✨ Key Features:</p>
+                  <ul>
+                    <li>UI Automation (POM)</li>
+                    <li>API Testing</li>
+                    <li>CI/CD Integration</li>
+                  </ul>
+                </div>
+              </article>
+
+              <!-- Card 3: Data Validation Tool -->
+              <article class="project-card" data-category="project">
+                <div class="project-card__header">
+                  <h3 class="project-card__title">SQL Data Validation Tool</h3>
+                  <span class="project-card__badge project-card__badge--project"
+                    >PROJECT</span
+                  >
+                </div>
+                <p class="project-card__desc">
+                  Engineered an automated SQL validation script to
+                  cross-reference payroll records between two databases,
+                  flagging discrepancies in real-time and reducing manual
+                  auditing time by 80%.
+                </p>
+                <div class="project-card__tags">
+                  <span>Python</span>
+                  <span>MS SQL Server</span>
+                  <span>Pandas</span>
+                </div>
+                <div class="project-card__metrics">
+                  <div class="metric">
+                    <span class="metric__label">Efficiency:</span>
+                    <span class="metric__value">+80%</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric__label">Errors Caught:</span>
+                    <span class="metric__value">100%</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Card 4: Healthcare ERP Testing -->
+              <article class="project-card" data-category="project">
+                <div class="project-card__header">
+                  <h3 class="project-card__title">Healthcare ERP Test Suite</h3>
+                  <span class="project-card__badge project-card__badge--project"
+                    >PROJECT</span
+                  >
+                </div>
+                <p class="project-card__desc">
+                  Developed a comprehensive manual test suite for a hospital ERP
+                  deployment, covering patient registration, billing, and
+                  pharmacy modules. Documented 200+ test cases and streamlined
+                  the defect reporting process in JIRA.
+                </p>
+                <div class="project-card__tags">
+                  <span>Manual Testing</span>
+                  <span>JIRA</span>
+                  <span>Hospital ERP</span>
+                </div>
+                <div class="project-card__features">
+                  <p class="features-title">✨ Key Features:</p>
+                  <ul>
+                    <li>Test Case Design</li>
+                    <li>Defect Tracking</li>
+                    <li>Regression Testing</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="section">
+        <div class="wrap section__grid">
+          <header class="section__head">
+            <h2 class="section__title">Contact</h2>
+          </header>
+
+          <div class="section__body">
+            <p class="contact__lead">Available for opportunities.</p>
+            <a class="contact__email" href="mailto:wasi.wui@gmail.com"
+              >wasi.wui@gmail.com</a
+            >
+
+            <dl class="contact__facts">
+              <div>
+                <dt>Location</dt>
+                <dd>Dhaka, Bangladesh</dd>
+              </div>
+              <div>
+                <dt>Phone</dt>
+                <dd><a href="tel:+8801644328054">+8801644328054</a></dd>
+              </div>
+            </dl>
+
+            <h3 class="subhead">References</h3>
+            <ul class="refs">
+              <li class="refs__item">
+                <h4 class="refs__name">Habibur Rahman</h4>
+                <p class="refs__role">
+                  Head of Business Operations, Quantanite Bangladesh Ltd
+                </p>
+                <a
+                  class="refs__mail"
+                  href="mailto:Habibur.Rahman@quantanite.com"
+                  >Habibur.Rahman@quantanite.com</a
+                >
+              </li>
+              <li class="refs__item">
+                <h4 class="refs__name">Omar Faruk</h4>
+                <p class="refs__role">
+                  Project Manager, hSenid Business Solutions PLC
+                </p>
+                <a class="refs__mail" href="mailto:omar.f@hsenidbiz.com"
+                  >omar.f@hsenidbiz.com</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer__inner">
+        <p>&copy; <span id="year">2024</span> Wasi Ul Islam Tasin</p>
+        <ul class="site-footer__links">
+          <li>
+            <a
+              href="https://www.linkedin.com/in/wasi-ul-islam-t-491171162/"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://github.com/koeffingdaal"
+              target="_blank"
+              rel="noopener"
+              >GitHub</a
+            >
+          </li>
+          <li><a href="#home">Back to top</a></li>
+        </ul>
       </div>
-    </section>
-  </main>
+    </footer>
 
-  <footer class="site-footer">
-    <div class="wrap site-footer__inner">
-      <p>&copy; <span id="year">2024</span> Wasi Ul Islam Tasin</p>
-      <ul class="site-footer__links">
-        <li><a href="https://www.linkedin.com/in/wasi-ul-islam-t-491171162/" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="https://github.com/koeffingdaal" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="#home">Back to top</a></li>
-      </ul>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>

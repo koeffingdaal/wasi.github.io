@@ -1,99 +1,105 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   // --- 1. Mobile Navigation Toggle ---
-  const navToggle = document.getElementById('nav-toggle');
-  const siteNav = document.getElementById('site-nav');
-  
+  const navToggle = document.getElementById("nav-toggle");
+  const siteNav = document.getElementById("site-nav");
+
   if (navToggle && siteNav) {
-    navToggle.addEventListener('click', () => {
-      const isOpen = siteNav.classList.contains('is-open');
-      siteNav.classList.toggle('is-open');
-      navToggle.setAttribute('aria-expanded', !isOpen);
+    navToggle.addEventListener("click", () => {
+      const isOpen = siteNav.classList.contains("is-open");
+      siteNav.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", !isOpen);
     });
   }
 
   // --- 2. Dark Mode Toggle ---
-  const themeToggle = document.getElementById('theme-toggle');
-  
+  const themeToggle = document.getElementById("theme-toggle");
+
   if (themeToggle) {
     // Set initial aria states based on the theme set in the head script
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    themeToggle.setAttribute('aria-label', currentTheme === 'dark' ? 'Light theme' : 'Dark theme');
-    themeToggle.setAttribute('aria-pressed', currentTheme === 'dark');
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    themeToggle.setAttribute(
+      "aria-label",
+      currentTheme === "dark" ? "Light theme" : "Dark theme",
+    );
+    themeToggle.setAttribute("aria-pressed", currentTheme === "dark");
 
-    themeToggle.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      const newTheme = current === 'dark' ? 'light' : 'dark';
-      
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      themeToggle.setAttribute('aria-label', newTheme === 'dark' ? 'Light theme' : 'Dark theme');
-      themeToggle.setAttribute('aria-pressed', newTheme === 'dark');
+    themeToggle.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme");
+      const newTheme = current === "dark" ? "light" : "dark";
+
+      document.documentElement.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+      themeToggle.setAttribute(
+        "aria-label",
+        newTheme === "dark" ? "Light theme" : "Dark theme",
+      );
+      themeToggle.setAttribute("aria-pressed", newTheme === "dark");
     });
   }
 
   // --- 3. Tab System (Education & Certifications) ---
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  const tabPanels = document.querySelectorAll('.tab-panel');
+  const tabBtns = document.querySelectorAll(".tab-btn");
+  const tabPanels = document.querySelectorAll(".tab-panel");
 
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active'));
-      tabPanels.forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      const targetId = btn.getAttribute('data-tab');
-      document.getElementById(targetId).classList.add('active');
+  tabBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      tabBtns.forEach((b) => b.classList.remove("active"));
+      tabPanels.forEach((p) => p.classList.remove("active"));
+      btn.classList.add("active");
+      const targetId = btn.getAttribute("data-tab");
+      document.getElementById(targetId).classList.add("active");
     });
   });
 
   // --- 4. Project Filtering Logic ---
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-card');
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const projectCards = document.querySelectorAll(".project-card");
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
 
-      const filterValue = btn.getAttribute('data-filter');
+      const filterValue = btn.getAttribute("data-filter");
 
-      projectCards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        card.classList.add('is-filtering');
-        
+      projectCards.forEach((card) => {
+        const category = card.getAttribute("data-category");
+        card.classList.add("is-filtering");
+
         setTimeout(() => {
-          if (filterValue === 'all' || filterValue === category) {
-            card.classList.remove('is-hidden');
+          if (filterValue === "all" || filterValue === category) {
+            card.classList.remove("is-hidden");
           } else {
-            card.classList.add('is-hidden');
+            card.classList.add("is-hidden");
           }
-          setTimeout(() => card.classList.remove('is-filtering'), 50);
+          setTimeout(() => card.classList.remove("is-filtering"), 50);
         }, 200);
       });
     });
   });
 
   // --- 5. Career Plot Timeline Builder ---
-  const plotContainer = document.getElementById('plot');
-  const plotChart = document.getElementById('plot-chart');
+  const plotContainer = document.getElementById("plot");
+  const plotChart = document.getElementById("plot-chart");
 
   if (plotContainer && plotChart) {
-    const timelineItems = document.querySelectorAll('[data-timeline]');
-    
+    const timelineItems = document.querySelectorAll("[data-timeline]");
+
     if (timelineItems.length > 0) {
       plotContainer.hidden = false;
 
       let minYear = Infinity;
       let maxYear = -Infinity;
 
-      timelineItems.forEach(item => {
-        const startStr = item.getAttribute('data-start');
-        const endStr = item.getAttribute('data-end');
+      timelineItems.forEach((item) => {
+        const startStr = item.getAttribute("data-start");
+        const endStr = item.getAttribute("data-end");
         if (startStr) {
-          const startY = parseInt(startStr.split('-')[0], 10);
+          const startY = parseInt(startStr.split("-")[0], 10);
           if (startY < minYear) minYear = startY;
         }
         if (endStr) {
-          const endY = parseInt(endStr.split('-')[0], 10);
+          const endY = parseInt(endStr.split("-")[0], 10);
           if (endY > maxYear) maxYear = endY;
         }
       });
@@ -101,16 +107,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentYear = new Date().getFullYear();
       if (maxYear < currentYear) maxYear = currentYear;
       if (minYear > currentYear) minYear = currentYear;
-      
+
       const totalYears = maxYear - minYear;
 
       const getPercent = (yearStr) => {
         if (!yearStr) return 0;
-        const year = parseInt(yearStr.split('-')[0], 10);
+        const year = parseInt(yearStr.split("-")[0], 10);
         return ((year - minYear) / totalYears) * 100;
       };
 
-      let html = '';
+      let html = "";
 
       // 1. Axis (Top ticks)
       html += `<div class="plot__axis">`;
@@ -127,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 2. Rows
       html += `<div class="plot__rows">`;
-      
+
       // 2a. Background overlays
       html += `<div class="plot__overlay">`;
       for (let y = minYear; y <= maxYear; y++) {
@@ -142,26 +148,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 2b. List of items
       html += `<div class="plot__list">`;
-      
+
       const sortedItems = Array.from(timelineItems).sort((a, b) => {
-        return new Date(b.getAttribute('data-start')) - new Date(a.getAttribute('data-start'));
+        return (
+          new Date(b.getAttribute("data-start")) -
+          new Date(a.getAttribute("data-start"))
+        );
       });
 
       sortedItems.forEach((item, index) => {
-        const start = item.getAttribute('data-start');
-        const end = item.getAttribute('data-end');
-        const label = item.getAttribute('data-chart-label') || 'Untitled';
-        
+        const start = item.getAttribute("data-start");
+        const end = item.getAttribute("data-end");
+        const label = item.getAttribute("data-chart-label") || "Untitled";
+
         // NEW: Get the role (designation/degree) and tenure (dates) for the sub-text
-        const role = item.getAttribute('data-chart-role') || '';
-        const tenure = item.getAttribute('data-chart-tenure') || '';
-        
+        const role = item.getAttribute("data-chart-role") || "";
+        const tenure = item.getAttribute("data-chart-tenure") || "";
+
         // Combine role and tenure into the meta line
-        const metaText = [role, tenure].filter(Boolean).join(' • ');
+        const metaText = [role, tenure].filter(Boolean).join(" • ");
 
         const id = item.id;
-        const isEdu = item.classList.contains('edu__item');
-        
+        const isEdu = item.classList.contains("edu__item");
+
         const left = getPercent(start);
         const right = getPercent(end);
         const width = Math.max(right - left, 1);
@@ -170,10 +179,10 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="plot__row">
             <a href="#${id}" class="plot__label">
               <span class="plot__org">${label}</span>
-              ${metaText ? `<span class="plot__meta">${metaText}</span>` : ''}
+              ${metaText ? `<span class="plot__meta">${metaText}</span>` : ""}
             </a>
             <div class="plot__track">
-              <div class="plot__bar ${isEdu ? 'plot__bar--edu' : ''} ${!end ? 'plot__bar--now' : ''}" 
+              <div class="plot__bar ${isEdu ? "plot__bar--edu" : ""} ${!end ? "plot__bar--now" : ""}" 
                    style="left: ${left}%; width: ${width}%; --i: ${index};">
               </div>
             </div>
@@ -182,11 +191,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       html += `</div></div>`;
-      
+
       plotChart.innerHTML = html;
 
       setTimeout(() => {
-        plotContainer.classList.add('is-drawn');
+        plotContainer.classList.add("is-drawn");
       }, 100);
     }
   }
