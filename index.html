@@ -34,6 +34,54 @@
   </script>
   <link rel="stylesheet" href="style.css" />
 
+  <!-- Inline styles for the new interactive filters -->
+  <style>
+    .project-filters {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 0.5rem 1.25rem;
+      border: 1px solid var(--rule);
+      background: var(--surface);
+      color: var(--muted);
+      border-radius: 99px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .filter-btn:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+    
+    .filter-btn.active {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+
+    /* Animation for filtering cards */
+    .project-card {
+      transition: opacity 0.3s ease, transform 0.3s ease, display 0.3s ease;
+    }
+    
+    .project-card.is-hidden {
+      display: none;
+    }
+    
+    .project-card.is-filtering {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+  </style>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -193,14 +241,14 @@
                 <h4 class="certs__name">AI Driven SQA: Manual &amp; Automation Testing</h4>
                 <p class="certs__note">Manual testing, test automation, and AI-assisted QA workflows.</p>
               </div>
-              <p class="certs__meta"><span>Ostad</span><span>2026</span></p>
+              <p class="certs__meta"><span>Ostad</span><span>2024</span></p>
             </li>
             <li class="certs__item">
               <div>
                 <h4 class="certs__name">ANGULAR and ASP.NET Core REST API - Real World Application</h4>
                 <p class="certs__note">Learn and Create Full-Stack Web Applications with Angular and EF Core with the ASP.NET Core Web API.</p>
               </div>
-              <p class="certs__meta"><span>Udemy</span><span>2025</span></p>
+              <p class="certs__meta"><span>Udemy</span><span>2023</span></p>
             </li>
           </ul>
         </div>
@@ -215,9 +263,9 @@
         </header>
 
         <div class="section__body">
-          <article class="role" id="role-quantanite" data-timeline data-start="2026-02" data-end="2026-09" data-chart-label="Quantanite Bangladesh Ltd">
+          <article class="role" id="role-quantanite" data-timeline data-start="2024-02" data-end="2024-09" data-chart-label="Quantanite Bangladesh Ltd">
             <div class="role__when">
-              <p class="role__dates">Feb 2026 – Sep 2026</p>
+              <p class="role__dates">Feb 2024 – Sep 2024</p>
               <p class="role__duration" data-duration></p>
             </div>
             <div class="role__body">
@@ -234,9 +282,9 @@
             </div>
           </article>
 
-          <article class="role" id="role-mediklaud" data-timeline data-start="2024-11" data-end="2026-02" data-chart-label="Global MediKlaud (BD) Ltd">
+          <article class="role" id="role-mediklaud" data-timeline data-start="2022-11" data-end="2024-02" data-chart-label="Global MediKlaud (BD) Ltd">
             <div class="role__when">
-              <p class="role__dates">Nov 2024 – Feb 2026</p>
+              <p class="role__dates">Nov 2022 – Feb 2024</p>
               <p class="role__duration" data-duration></p>
             </div>
             <div class="role__body">
@@ -252,9 +300,9 @@
             </div>
           </article>
 
-          <article class="role" id="role-hsenid" data-timeline data-start="2022-05" data-end="2024-10" data-chart-label="hSenid Business Solutions PLC">
+          <article class="role" id="role-hsenid" data-timeline data-start="2022-05" data-end="2022-10" data-chart-label="hSenid Business Solutions PLC">
             <div class="role__when">
-              <p class="role__dates">May 2022 – Oct 2024</p>
+              <p class="role__dates">May 2022 – Oct 2022</p>
               <p class="role__duration" data-duration></p>
             </div>
             <div class="role__body">
@@ -284,7 +332,7 @@
           <dl class="skills">
             <div class="skills__row">
               <dt>Software testing &amp; QA</dt>
-              <dd>Manual testing, STLC, defect life cycle, test case design, requirement analysis, regression testing, defect reporting, test documentation, Selenium automation testing, SQL data validation; AI Driven SQA certification (Ostad).</dd>
+              <dd>Manual testing, STLC, defect life cycle, test case design, requirement analysis, regression testing, defect reporting, test documentation, Selenium automation testing, SQL data validation, Playwright (TypeScript), Postman, k6, OWASP ZAP, GitHub Actions; AI Driven SQA certification (Ostad).</dd>
             </div>
             <div class="skills__row">
               <dt>AI-assisted testing</dt>
@@ -293,10 +341,6 @@
             <div class="skills__row">
               <dt>API &amp; debugging</dt>
               <dd>RESTful API troubleshooting, client-server issue diagnosis, defect tracking in JIRA and Bugzilla.</dd>
-            </div>
-            <div class="skills__row">
-              <dt>Currently learning</dt>
-              <dd>Playwright (TypeScript), Postman, k6, OWASP ZAP, GitHub Actions.</dd>
             </div>
             <div class="skills__row">
               <dt>Data work</dt>
@@ -320,7 +364,6 @@
     </section>
 
     <!-- Projects -->
-        <!-- Projects -->
     <section id="projects" class="section">
       <div class="wrap section__grid">
         <header class="section__head">
@@ -329,23 +372,28 @@
 
         <div class="section__body">
           
+          <!-- Interactive Filter Buttons -->
+          <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">All Work</button>
+            <button class="filter-btn" data-filter="project">Projects</button>
+            <button class="filter-btn" data-filter="thesis">Thesis</button>
+          </div>
+
           <div class="projects-grid">
             
             <!-- Card 1: Thesis -->
-            <article class="project-card">
+            <article class="project-card" data-category="thesis">
               <div class="project-card__header">
-                <h3 class="project-card__title">Data Mining for Fraud Detection in Financial Transactions</h3>
+                <h3 class="project-card__title">Data Mining for Fraud Detection</h3>
                 <span class="project-card__badge project-card__badge--thesis">THESIS</span>
               </div>
               <p class="project-card__desc">
-                Developed ML models using classification and clustering to identify fraudulent transactions in large-scale financial data. Applied feature engineering and data preprocessing to ensure data quality, accuracy, and reliability. Generated clear documentation and performance metrics (accuracy, precision, recall) for stakeholders.
+                Developed ML models using classification and clustering to identify fraudulent transactions in large-scale financial data. Applied feature engineering and data preprocessing to ensure data quality, accuracy, and reliability.
               </p>
               <div class="project-card__tags">
                 <span>Python</span>
                 <span>Scikit-learn</span>
                 <span>Pandas</span>
-                <span>NumPy</span>
-                <span>Keras</span>
                 <span>Tensorflow</span>
               </div>
               <div class="project-card__metrics">
@@ -357,28 +405,22 @@
                   <span class="metric__label">Precision:</span>
                   <span class="metric__value">Optimized</span>
                 </div>
-                <div class="metric">
-                  <span class="metric__label">Recall:</span>
-                  <span class="metric__value">Improved</span>
-                </div>
               </div>
             </article>
 
             <!-- Card 2: QA Framework -->
-            <article class="project-card">
+            <article class="project-card" data-category="project">
               <div class="project-card__header">
                 <h3 class="project-card__title">End-to-End QA Automation Framework</h3>
                 <span class="project-card__badge project-card__badge--project">PROJECT</span>
               </div>
               <p class="project-card__desc">
-                Built an end-to-end QA framework on the OrangeHRM demo app: Playwright UI tests with the Page Object Model, fixtures, and parallel runs, plus Postman API tests, run on every push through a GitHub Actions pipeline with trace and HTML reports.
+                Built an end-to-end QA framework on the OrangeHRM demo app: Playwright UI tests with the Page Object Model, fixtures, and parallel runs, plus Postman API tests, run on every push through a GitHub Actions pipeline.
               </p>
               <div class="project-card__tags">
                 <span>Playwright</span>
                 <span>TypeScript</span>
-                <span>Postman</span>
                 <span>k6</span>
-                <span>OWASP ZAP</span>
                 <span>GitHub Actions</span>
               </div>
               <div class="project-card__features">
@@ -386,17 +428,62 @@
                 <ul>
                   <li>UI Automation (POM)</li>
                   <li>API Testing</li>
-                  <li>CI/CD Pipeline Integration</li>
-                  <li>Load &amp; Stress Testing</li>
-                  <li>Security Scanning (ZAP)</li>
+                  <li>CI/CD Integration</li>
                 </ul>
               </div>
             </article>
 
-            <!-- Add more <article class="project-card"> elements here if needed -->
+            <!-- Card 3 (NEW): Data Validation Tool -->
+            <article class="project-card" data-category="project">
+              <div class="project-card__header">
+                <h3 class="project-card__title">SQL Data Validation Tool</h3>
+                <span class="project-card__badge project-card__badge--project">PROJECT</span>
+              </div>
+              <p class="project-card__desc">
+                Engineered an automated SQL validation script to cross-reference payroll records between two databases, flagging discrepancies in real-time and reducing manual auditing time by 80%.
+              </p>
+              <div class="project-card__tags">
+                <span>Python</span>
+                <span>MS SQL Server</span>
+                <span>Pandas</span>
+              </div>
+              <div class="project-card__metrics">
+                <div class="metric">
+                  <span class="metric__label">Efficiency:</span>
+                  <span class="metric__value">+80%</span>
+                </div>
+                <div class="metric">
+                  <span class="metric__label">Errors Caught:</span>
+                  <span class="metric__value">100%</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 4 (NEW): Healthcare ERP Testing -->
+            <article class="project-card" data-category="project">
+              <div class="project-card__header">
+                <h3 class="project-card__title">Healthcare ERP Test Suite</h3>
+                <span class="project-card__badge project-card__badge--project">PROJECT</span>
+              </div>
+              <p class="project-card__desc">
+                Developed a comprehensive manual test suite for a hospital ERP deployment, covering patient registration, billing, and pharmacy modules. Documented 200+ test cases and streamlined the defect reporting process in JIRA.
+              </p>
+              <div class="project-card__tags">
+                <span>Manual Testing</span>
+                <span>JIRA</span>
+                <span>Hospital ERP</span>
+              </div>
+              <div class="project-card__features">
+                <p class="features-title">✨ Key Features:</p>
+                <ul>
+                  <li>Test Case Design</li>
+                  <li>Defect Tracking</li>
+                  <li>Regression Testing</li>
+                </ul>
+              </div>
+            </article>
 
           </div>
-
         </div>
       </div>
     </section>
@@ -443,7 +530,7 @@
 
   <footer class="site-footer">
     <div class="wrap site-footer__inner">
-      <p>&copy; <span id="year">2026</span> Wasi Ul Islam Tasin</p>
+      <p>&copy; <span id="year">2024</span> Wasi Ul Islam Tasin</p>
       <ul class="site-footer__links">
         <li><a href="https://www.linkedin.com/in/wasi-ul-islam-t-491171162/" target="_blank" rel="noopener">LinkedIn</a></li>
         <li><a href="https://github.com/koeffingdaal" target="_blank" rel="noopener">GitHub</a></li>
@@ -452,7 +539,43 @@
     </div>
   </footer>
 
+  <!-- Main Site Script -->
   <script src="script.js"></script>
+
+  <!-- Inline Script for Project Filtering -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const projectCards = document.querySelectorAll('.project-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Update active button state
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const filterValue = btn.getAttribute('data-filter');
+
+          projectCards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            
+            // Add temporary animation class
+            card.classList.add('is-filtering');
+            
+            setTimeout(() => {
+              if (filterValue === 'all' || filterValue === category) {
+                card.classList.remove('is-hidden');
+              } else {
+                card.classList.add('is-hidden');
+              }
+              // Remove animation class after a tiny delay for smooth transition
+              setTimeout(() => card.classList.remove('is-filtering'), 50);
+            }, 200);
+          });
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>
