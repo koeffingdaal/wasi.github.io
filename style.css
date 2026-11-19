@@ -342,21 +342,25 @@ section[id], article[id], li[id] {
     text-decoration-color: var(--accent);
 }
 
+/* Profile Photo - Circular Shape */
 .hero__photo {
-    max-width: 20rem;
+    max-width: 22rem;
+    margin-inline: auto;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
     overflow: hidden;
-    border-radius: var(--radius);
 }
 
 .hero__photo img {
     width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 5;
+    height: 100%;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
-    object-position: 50% 18%;
-    border-radius: var(--radius);
-    border: 1px solid var(--rule);
+    object-position: 50% 15%;
+    border-radius: 50%;
+    border: 4px solid var(--surface);
     background: var(--surface);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
 }
 
 @media (min-width: 880px) {
@@ -367,10 +371,63 @@ section[id], article[id], li[id] {
 
     .hero__photo {
         max-width: none;
+        margin-inline: 0;
     }
 }
 
-/* Career plot: the one memorable element --------------------------------- */
+/* Tab System ------------------------------------------------------------- */
+.tab-container {
+    margin-top: 2rem;
+}
+
+.tab-buttons {
+    display: flex;
+    gap: 1rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 0.75rem 0.5rem;
+    font-family: var(--display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.tab-btn:hover {
+    color: var(--ink);
+}
+
+.tab-btn.active {
+    color: var(--ink);
+}
+
+.tab-btn.active::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+}
+
+.tab-panel {
+    display: none;
+    animation: fade-in 0.4s ease;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+/* Career plot ------------------------------------------------------------ */
 .plot {
     --label-w: clamp(12rem, 25vw, 17rem);
     margin-top: clamp(3rem, 7vw, 5rem);
@@ -518,7 +575,6 @@ section[id], article[id], li[id] {
     clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 50%, calc(100% - 7px) 100%, 0 100%);
 }
 
-/* Bars draw in once, when the timeline scrolls into view */
 @media (prefers-reduced-motion: no-preference) {
     .js .plot__bar {
         transform: scaleX(0);
@@ -802,10 +858,40 @@ section[id], article[id], li[id] {
     }
 }
 
-/* Projects Card Grid */
+/* Projects Card Grid & Filters */
+.project-filters {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.5rem 1.25rem;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+    color: var(--muted);
+    border-radius: 99px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+}
+
+.filter-btn.active {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+}
+
 .projects-grid {
     display: grid;
-    /* Forces a responsive layout that looks great with 2 or 3 cards */
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
     margin-top: 1rem;
@@ -819,13 +905,21 @@ section[id], article[id], li[id] {
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, display 0.3s ease;
     position: relative;
     overflow: hidden;
     height: 100%;
 }
 
-/* Top accent border effect */
+.project-card.is-hidden {
+    display: none;
+}
+
+.project-card.is-filtering {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
 .project-card::before {
     content: "";
     position: absolute;
@@ -864,7 +958,6 @@ section[id], article[id], li[id] {
     margin: 0;
 }
 
-/* Badges */
 .project-card__badge {
     font-family: var(--display);
     font-size: 0.75rem;
@@ -894,7 +987,6 @@ section[id], article[id], li[id] {
     flex-grow: 1;
 }
 
-/* Tags */
 .project-card__tags {
     display: flex;
     flex-wrap: wrap;
@@ -912,7 +1004,6 @@ section[id], article[id], li[id] {
     border-radius: 99px;
 }
 
-/* Metrics (for Thesis Card) */
 .project-card__metrics {
     display: flex;
     gap: 1.5rem;
@@ -942,7 +1033,6 @@ section[id], article[id], li[id] {
     color: var(--accent-ink);
 }
 
-/* Key Features (for QA Card) */
 .project-card__features {
     padding-top: 1.25rem;
     border-top: 1px solid var(--rule);
@@ -978,7 +1068,6 @@ section[id], article[id], li[id] {
     font-size: 0.8rem;
 }
 
-/* Dark Mode Adjustments for Badges */
 :root[data-theme="dark"] .project-card__badge--thesis {
     background: rgba(245, 158, 11, 0.15);
     color: #fbbf24;
@@ -1169,7 +1258,6 @@ section[id], article[id], li[id] {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    /* Page load: the name rises line by line, then the rest follows */
     .js .hero__line > span {
         animation: line-up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
     }
@@ -1198,7 +1286,6 @@ section[id], article[id], li[id] {
         animation: photo-settle 1.4s 0.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
     }
 
-    /* Sections ease in as they reach the viewport */
     .js .reveal {
         opacity: 0;
         transform: translateY(16px);
@@ -1252,20 +1339,4 @@ section[id], article[id], li[id] {
         animation: none !important;
         clip-path: none !important;
     }
-}
-
-/* Make Profile Photo a Perfect Circle */
-.hero__photo {
-    border-radius: 50% !important;
-    aspect-ratio: 1 / 1 !important;
-    max-width: 22rem; /* Slightly larger to compensate for the circle */
-    margin-inline: auto; /* Center it */
-}
-
-.hero__photo img {
-    aspect-ratio: 1 / 1 !important;
-    object-position: 50% 15%; /* Adjust this if your head gets cut off */
-    border-radius: 50% !important;
-    border: 4px solid var(--surface) !important; /* Creates a nice framing effect */
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
 }

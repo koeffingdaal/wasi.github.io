@@ -1,285 +1,189 @@
-(function () {
-    'use strict';
-
-    var root = document.documentElement;
-
-    /* ------------------------------------------------------------------
-       Dates. Everything on the timeline comes from the data-start and
-       data-end attributes (YYYY-MM) in index.html. A role with no data-end
-       is ongoing and runs to the current month. Both end months count, so
-       Nov 2024 to Apr 2026 is 18 months.
-       ------------------------------------------------------------------ */
-    function monthIndex(value) {
-        var parts = value.split('-');
-        return parseInt(parts[0], 10) * 12 + parseInt(parts[1], 10) - 1;
-    }
-
-    var today = new Date();
-    var nowIndex = today.getFullYear() * 12 + today.getMonth();
-
-    function plural(n, word) {
-        return n + ' ' + word + (n === 1 ? '' : 's');
-    }
-
-    function formatDuration(startIndex, endIndex) {
-        var months = endIndex - startIndex + 1;
-        var years = Math.floor(months / 12);
-        var rest = months % 12;
-        var parts = [];
-        if (years) parts.push(plural(years, 'year'));
-        if (rest) parts.push(plural(rest, 'month'));
-        return parts.join(' ');
-    }
-
-    var entries = Array.prototype.slice.call(document.querySelectorAll('[data-timeline]')).map(function (el) {
-        var title = el.querySelector('.role__title');
-        return {
-            el: el,
-            id: el.id,
-            start: monthIndex(el.getAttribute('data-start')),
-            end: el.hasAttribute('data-end') ? monthIndex(el.getAttribute('data-end')) : nowIndex,
-            ongoing: !el.hasAttribute('data-end'),
-            yearLevel: el.getAttribute('data-precision') === 'year',
-            label: el.getAttribute('data-chart-label') || '',
-            meta: el.getAttribute('data-chart-meta') || (title ? title.textContent.trim() : '')
-        };
+document.addEventListener('DOMContentLoaded', () => {
+  // --- 1. Mobile Navigation Toggle ---
+  const navToggle = document.getElementById('nav-toggle');
+  const siteNav = document.getElementById('site-nav');
+  
+  if (navToggle && siteNav) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = siteNav.classList.contains('is-open');
+      siteNav.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', !isOpen);
     });
+  }
 
-    entries.forEach(function (entry) {
-        var slot = entry.el.querySelector('[data-duration]');
-        if (slot) slot.textContent = formatDuration(entry.start, entry.end);
+  // --- 2. Dark Mode Toggle ---
+  const themeToggle = document.getElementById('theme-toggle');
+  
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      themeToggle.setAttribute('aria-label', newTheme === 'dark' ? 'Light theme' : 'Dark theme');
+      themeToggle.setAttribute('aria-pressed', newTheme === 'dark');
     });
+  }
 
-    /* ------------------------------------------------------------------
-       Career timeline
-       ------------------------------------------------------------------ */
-    function el(tag, className, text) {
-        var node = document.createElement(tag);
-        if (className) node.className = className;
-        if (text) node.textContent = text;
-        return node;
-    }
+  // --- 3. Tab System (Education & Certifications) ---
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabPanels = document.querySelectorAll('.tab-panel');
 
-    function buildPlot() {
-        var plot = document.getElementById('plot');
-        var chart = document.getElementById('plot-chart');
-        if (!plot || !chart || !entries.length) return;
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabPanels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const targetId = btn.getAttribute('data-tab');
+      document.getElementById(targetId).classList.add('active');
+    });
+  });
 
-        var sorted = entries.slice().sort(function (a, b) { return a.start - b.start; });
-        var firstYear = Math.floor(sorted[0].start / 12);
-        var lastIndex = Math.max(nowIndex, Math.max.apply(null, sorted.map(function (e) { return e.end; })));
-        var lastYear = Math.floor(lastIndex / 12);
-        var origin = firstYear * 12;
-        var total = (lastYear * 12 + 11) - origin + 1;
+  // --- 4. Project Filtering Logic ---
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
 
-        function pos(index) { return ((index - origin) / total) * 100; }
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
 
-        var axis = el('div', 'plot__axis');
-        axis.setAttribute('aria-hidden', 'true');
+      const filterValue = btn.getAttribute('data-filter');
 
-        var rows = el('div', 'plot__rows');
-        var overlay = el('div', 'plot__overlay');
-        overlay.setAttribute('aria-hidden', 'true');
-        var list = el('ol', 'plot__list');
+      projectCards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        card.classList.add('is-filtering');
+        
+        setTimeout(() => {
+          if (filterValue === 'all' || filterValue === category) {
+            card.classList.remove('is-hidden');
+          } else {
+            card.classList.add('is-hidden');
+          }
+          setTimeout(() => card.classList.remove('is-filtering'), 50);
+        }, 200);
+      });
+    });
+  });
 
-        for (var y = firstYear; y <= lastYear; y++) {
-            var tick = el('span', 'plot__tick' + ((y - firstYear) % 2 ? ' plot__tick--minor' : ''), String(y));
-            tick.style.left = pos(y * 12) + '%';
-            axis.appendChild(tick);
+  // --- 5. Career Plot Timeline Builder ---
+  const plotContainer = document.getElementById('plot');
+  const plotChart = document.getElementById('plot-chart');
 
-            var grid = el('span', 'plot__grid');
-            grid.style.left = pos(y * 12) + '%';
-            overlay.appendChild(grid);
+  if (plotContainer && plotChart) {
+    // Find all elements with data-timeline
+    const timelineItems = document.querySelectorAll('[data-timeline]');
+    
+    if (timelineItems.length > 0) {
+      plotContainer.hidden = false;
+
+      // Find min and max years
+      let minYear = Infinity;
+      let maxYear = -Infinity;
+
+      timelineItems.forEach(item => {
+        const startStr = item.getAttribute('data-start');
+        const endStr = item.getAttribute('data-end');
+        if (startStr) {
+          const startY = parseInt(startStr.split('-')[0], 10);
+          if (startY < minYear) minYear = startY;
         }
-
-        var nowTick = el('span', 'plot__tick plot__tick--now', 'now');
-        nowTick.style.left = pos(nowIndex + 0.5) + '%';
-        axis.appendChild(nowTick);
-
-        var nowLine = el('span', 'plot__nowline');
-        nowLine.style.left = pos(nowIndex + 0.5) + '%';
-        overlay.appendChild(nowLine);
-
-        sorted.forEach(function (entry, i) {
-            var row = el('li', 'plot__row');
-
-            var label = el('a', 'plot__label');
-            label.href = '#' + entry.id;
-            label.appendChild(el('span', 'plot__org', entry.label));
-            var meta = entry.yearLevel ? entry.meta : entry.meta + ', ' + formatDuration(entry.start, entry.end);
-            label.appendChild(el('span', 'plot__meta', meta));
-
-            var track = el('div', 'plot__track');
-            var bar = el('span', 'plot__bar' + (entry.yearLevel ? ' plot__bar--edu' : '') + (entry.ongoing ? ' plot__bar--now' : ''));
-            bar.setAttribute('aria-hidden', 'true');
-            bar.style.left = pos(entry.start) + '%';
-            bar.style.width = (pos(entry.end + 1) - pos(entry.start)) + '%';
-            bar.style.setProperty('--i', i);
-            track.appendChild(bar);
-
-            row.appendChild(label);
-            row.appendChild(track);
-            list.appendChild(row);
-        });
-
-        rows.appendChild(overlay);
-        rows.appendChild(list);
-        chart.appendChild(axis);
-        chart.appendChild(rows);
-        plot.hidden = false;
-    }
-
-    buildPlot();
-
-    /* ------------------------------------------------------------------
-       Theme toggle
-       ------------------------------------------------------------------ */
-    var themeToggle = document.getElementById('theme-toggle');
-    var themeMeta = document.querySelector('meta[name="theme-color"]');
-
-    function applyTheme(theme) {
-        root.setAttribute('data-theme', theme);
-        if (themeToggle) themeToggle.setAttribute('aria-pressed', String(theme === 'dark'));
-        if (themeMeta) themeMeta.setAttribute('content', theme === 'dark' ? '#0d1015' : '#f6f7f9');
-    }
-
-    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
-
-    if (themeToggle) {
-        themeToggle.addEventListener('click', function () {
-            var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-            applyTheme(next);
-            try { localStorage.setItem('theme', next); } catch (e) { /* storage unavailable */ }
-        });
-    }
-
-    /* ------------------------------------------------------------------
-       Mobile navigation
-       ------------------------------------------------------------------ */
-    var nav = document.getElementById('site-nav');
-    var navToggle = document.getElementById('nav-toggle');
-
-    function setNav(open) {
-        if (!nav || !navToggle) return;
-        nav.classList.toggle('is-open', open);
-        navToggle.setAttribute('aria-expanded', String(open));
-    }
-
-    if (nav && navToggle) {
-        navToggle.addEventListener('click', function () {
-            setNav(!nav.classList.contains('is-open'));
-        });
-        nav.addEventListener('click', function (event) {
-            if (event.target.closest('a')) setNav(false);
-        });
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'Escape' && nav.classList.contains('is-open')) {
-                setNav(false);
-                navToggle.focus();
-            }
-        });
-    }
-
-    /* ------------------------------------------------------------------
-       Mark the section in view in the navigation
-       ------------------------------------------------------------------ */
-    var links = Array.prototype.slice.call(document.querySelectorAll('.site-nav a'));
-    var targets = links
-        .map(function (link) { return document.querySelector(link.getAttribute('href')); })
-        .filter(Boolean);
-
-    if ('IntersectionObserver' in window && targets.length) {
-        var spy = new IntersectionObserver(function (items) {
-            items.forEach(function (item) {
-                if (!item.isIntersecting) return;
-                links.forEach(function (link) {
-                    if (link.getAttribute('href') === '#' + item.target.id) {
-                        link.setAttribute('aria-current', 'true');
-                    } else {
-                        link.removeAttribute('aria-current');
-                    }
-                });
-            });
-        }, { rootMargin: '-40% 0px -55% 0px' });
-
-        targets.forEach(function (target) { spy.observe(target); });
-
-        // Clear the marker while the hero is in view
-        var hero = document.getElementById('home');
-        if (hero) {
-            new IntersectionObserver(function (items) {
-                if (items[0].isIntersecting) {
-                    links.forEach(function (link) { link.removeAttribute('aria-current'); });
-                }
-            }, { rootMargin: '-40% 0px -55% 0px' }).observe(hero);
+        if (endStr) {
+          const endY = parseInt(endStr.split('-')[0], 10);
+          if (endY > maxYear) maxYear = endY;
         }
-    }
+      });
 
-    /* ------------------------------------------------------------------
-       Footer year
-       ------------------------------------------------------------------ */
-    var year = document.getElementById('year');
-    if (year) year.textContent = String(today.getFullYear());
+      const currentYear = new Date().getFullYear();
+      if (maxYear < currentYear) maxYear = currentYear;
+      if (minYear > currentYear) minYear = currentYear;
+      
+      const totalYears = maxYear - minYear;
 
-    /* ------------------------------------------------------------------
-       Motion: scroll progress, header shadow, timeline draw-in, reveals.
-       Everything here is skipped when the visitor prefers reduced motion.
-       ------------------------------------------------------------------ */
-    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var canObserve = 'IntersectionObserver' in window;
-    var header = document.querySelector('.site-header');
-    var ticking = false;
+      // Helper to calculate percentage from year
+      const getPercent = (yearStr) => {
+        if (!yearStr) return 0;
+        const year = parseInt(yearStr.split('-')[0], 10);
+        return ((year - minYear) / totalYears) * 100;
+      };
 
-    function onScroll() {
-        var max = root.scrollHeight - window.innerHeight;
-        var progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
-        root.style.setProperty('--progress', progress.toFixed(4));
-        if (header) header.classList.toggle('is-scrolled', window.scrollY > 8);
-        ticking = false;
-    }
+      // Build Chart HTML
+      let html = '';
 
-    window.addEventListener('scroll', function () {
-        if (!ticking) {
-            ticking = true;
-            window.requestAnimationFrame(onScroll);
+      // 1. Axis (Top ticks)
+      html += `<div class="plot__axis">`;
+      for (let y = minYear; y <= maxYear; y++) {
+        const left = ((y - minYear) / totalYears) * 100;
+        // Only show every 1 or 2 years if space is tight
+        const step = totalYears > 8 ? 2 : 1;
+        if ((y - minYear) % step === 0 || y === maxYear) {
+          html += `<span class="plot__tick" style="left: ${left}%;">${y}</span>`;
         }
-    }, { passive: true });
-    window.addEventListener('resize', onScroll);
-    onScroll();
+      }
+      // "Now" marker
+      const nowPercent = ((currentYear - minYear) / totalYears) * 100;
+      html += `<span class="plot__tick plot__tick--now" style="left: ${nowPercent}%; transform: translateX(-50%); padding-left: 0;">Now</span>`;
+      html += `</div>`;
 
-    var plotEl = document.getElementById('plot');
-    if (plotEl) {
-        if (reduceMotion || !canObserve) {
-            plotEl.classList.add('is-drawn');
-        } else {
-            var drawObserver = new IntersectionObserver(function (items) {
-                if (items[0].isIntersecting) {
-                    plotEl.classList.add('is-drawn');
-                    drawObserver.disconnect();
-                }
-            }, { threshold: 0.35 });
-            drawObserver.observe(plotEl);
+      // 2. Rows
+      html += `<div class="plot__rows">`;
+      
+      // 2a. Background overlays (Grid lines + Now line)
+      html += `<div class="plot__overlay">`;
+      for (let y = minYear; y <= maxYear; y++) {
+        const left = ((y - minYear) / totalYears) * 100;
+        const step = totalYears > 8 ? 2 : 1;
+        if ((y - minYear) % step === 0 || y === maxYear) {
+          html += `<div class="plot__grid" style="left: ${left}%;"></div>`;
         }
+      }
+      html += `<div class="plot__nowline" style="left: ${nowPercent}%;"></div>`;
+      html += `</div>`;
+
+      // 2b. List of items
+      html += `<div class="plot__list">`;
+      
+      // Sort items by start date descending (most recent first)
+      const sortedItems = Array.from(timelineItems).sort((a, b) => {
+        return new Date(b.getAttribute('data-start')) - new Date(a.getAttribute('data-start'));
+      });
+
+      sortedItems.forEach((item, index) => {
+        const start = item.getAttribute('data-start');
+        const end = item.getAttribute('data-end');
+        const label = item.getAttribute('data-chart-label') || 'Untitled';
+        const meta = item.getAttribute('data-chart-meta') || '';
+        const id = item.id;
+        const isEdu = item.classList.contains('edu__item');
+        
+        const left = getPercent(start);
+        const right = getPercent(end);
+        const width = Math.max(right - left, 1); // Ensure minimum visible width
+
+        html += `
+          <div class="plot__row">
+            <a href="#${id}" class="plot__label">
+              <span class="plot__org">${label}</span>
+              ${meta ? `<span class="plot__meta">${meta}</span>` : ''}
+            </a>
+            <div class="plot__track">
+              <div class="plot__bar ${isEdu ? 'plot__bar--edu' : ''} ${!end ? 'plot__bar--now' : ''}" 
+                   style="left: ${left}%; width: ${width}%; --i: ${index};">
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      html += `</div></div>`;
+      
+      plotChart.innerHTML = html;
+
+      // Trigger animation after a tiny delay
+      setTimeout(() => {
+        plotContainer.classList.add('is-drawn');
+      }, 100);
     }
-
-    if (!reduceMotion && canObserve) {
-        var revealSelector = '.section__head, .about__summary, .subhead, .edu__item, .certs__item, .role, ' +
-            '.skills__row, .project, .contact__lead, .contact__email, .contact__facts, .refs__item';
-        var revealItems = Array.prototype.slice.call(document.querySelectorAll(revealSelector));
-
-        var revealObserver = new IntersectionObserver(function (items) {
-            items.forEach(function (item) {
-                if (!item.isIntersecting) return;
-                item.target.classList.add('is-visible');
-                revealObserver.unobserve(item.target);
-            });
-        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
-
-        revealItems.forEach(function (item) {
-            var position = Array.prototype.indexOf.call(item.parentNode.children, item);
-            item.style.setProperty('--d', Math.min(position, 4) * 80 + 'ms');
-            item.classList.add('reveal');
-            revealObserver.observe(item);
-        });
-    }
-})();
+  }
+});

@@ -34,54 +34,6 @@
   </script>
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Inline styles for the new interactive filters -->
-  <style>
-    .project-filters {
-      display: flex;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-    }
-    
-    .filter-btn {
-      font-family: var(--display);
-      font-weight: 600;
-      font-size: 0.875rem;
-      padding: 0.5rem 1.25rem;
-      border: 1px solid var(--rule);
-      background: var(--surface);
-      color: var(--muted);
-      border-radius: 99px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    
-    .filter-btn:hover {
-      border-color: var(--ink);
-      color: var(--ink);
-    }
-    
-    .filter-btn.active {
-      background: var(--ink);
-      color: var(--paper);
-      border-color: var(--ink);
-    }
-
-    /* Animation for filtering cards */
-    .project-card {
-      transition: opacity 0.3s ease, transform 0.3s ease, display 0.3s ease;
-    }
-    
-    .project-card.is-hidden {
-      display: none;
-    }
-    
-    .project-card.is-filtering {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-  </style>
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -193,64 +145,78 @@
             with Playwright, k6, and AI-assisted testing.
           </p>
 
-          <h3 class="subhead">Education</h3>
-          <ul class="edu">
-            <li class="edu__item" id="edu-aiub" data-timeline data-start="2018-01" data-end="2022-12" data-precision="year"
-              data-chart-label="American International University-Bangladesh"
-              data-chart-meta="BSc in Computer Science &amp; Engineering, 2018 – 2022">
-              <div>
-                <h4 class="edu__degree">BSc in Computer Science &amp; Engineering</h4>
-                <p class="edu__school">American International University - Bangladesh</p>
-              </div>
-              <p class="edu__meta"><span>2018 – 2022</span><span>CGPA 3.43 / 4.00</span></p>
-            </li>
-            <li class="edu__item">
-              <div>
-                <h4 class="edu__degree">HSC in Science</h4>
-                <p class="edu__school">Ideal College, Dhanmondi</p>
-              </div>
-              <p class="edu__meta"><span>2015 – 2017</span><span>GPA 3.92 / 5.00</span></p>
-            </li>
-            <li class="edu__item">
-              <div>
-                <h4 class="edu__degree">SSC in Science</h4>
-                <p class="edu__school">Model Academy</p>
-              </div>
-              <p class="edu__meta"><span>2015</span><span>GPA 4.78 / 5.00</span></p>
-            </li>
-          </ul>
+          <!-- Tab System for Education & Certifications -->
+          <div class="tab-container">
+            <div class="tab-buttons">
+              <button class="tab-btn active" data-tab="education">Education</button>
+              <button class="tab-btn" data-tab="certifications">Certifications</button>
+            </div>
 
-          <h3 class="subhead">Certifications</h3>
-          <ul class="certs">
-            <li class="certs__item">
-              <div>
-                <h4 class="certs__name">Project Management Foundations: Small Projects</h4>
-                <p class="certs__note">Practical knowledge in managing tasks, deadlines, and stakeholder expectations.</p>
-              </div>
-              <p class="certs__meta"><span>LinkedIn Learning</span><span>2024</span></p>
-            </li>
-            <li class="certs__item">
-              <div>
-                <h4 class="certs__name">Data Management and Analysis in Data Science</h4>
-                <p class="certs__note">Skills in analyzing large datasets and preparing insights for decision-making.</p>
-              </div>
-              <p class="certs__meta"><span>Coursera</span><span>2024</span></p>
-            </li>
-            <li class="certs__item">
-              <div>
-                <h4 class="certs__name">AI Driven SQA: Manual &amp; Automation Testing</h4>
-                <p class="certs__note">Manual testing, test automation, and AI-assisted QA workflows.</p>
-              </div>
-              <p class="certs__meta"><span>Ostad</span><span>2024</span></p>
-            </li>
-            <li class="certs__item">
-              <div>
-                <h4 class="certs__name">ANGULAR and ASP.NET Core REST API - Real World Application</h4>
-                <p class="certs__note">Learn and Create Full-Stack Web Applications with Angular and EF Core with the ASP.NET Core Web API.</p>
-              </div>
-              <p class="certs__meta"><span>Udemy</span><span>2023</span></p>
-            </li>
-          </ul>
+            <!-- Education Panel -->
+            <div id="education" class="tab-panel active">
+              <ul class="edu">
+                <!-- The data-* attributes here are read by script.js to build the timeline -->
+                <li class="edu__item" id="edu-aiub" data-timeline data-start="2018-01" data-end="2022-12" data-precision="year"
+                  data-chart-label="American International University-Bangladesh"
+                  data-chart-meta="BSc in Computer Science &amp; Engineering, 2018 – 2022">
+                  <div>
+                    <h4 class="edu__degree">BSc in Computer Science &amp; Engineering</h4>
+                    <p class="edu__school">American International University - Bangladesh</p>
+                  </div>
+                  <p class="edu__meta"><span>2018 – 2022</span><span>CGPA 3.43 / 4.00</span></p>
+                </li>
+                <li class="edu__item">
+                  <div>
+                    <h4 class="edu__degree">HSC in Science</h4>
+                    <p class="edu__school">Ideal College, Dhanmondi</p>
+                  </div>
+                  <p class="edu__meta"><span>2015 – 2017</span><span>GPA 3.92 / 5.00</span></p>
+                </li>
+                <li class="edu__item">
+                  <div>
+                    <h4 class="edu__degree">SSC in Science</h4>
+                    <p class="edu__school">Model Academy</p>
+                  </div>
+                  <p class="edu__meta"><span>2015</span><span>GPA 4.78 / 5.00</span></p>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Certifications Panel -->
+            <div id="certifications" class="tab-panel">
+              <ul class="certs">
+                <li class="certs__item">
+                  <div>
+                    <h4 class="certs__name">Project Management Foundations: Small Projects</h4>
+                    <p class="certs__note">Practical knowledge in managing tasks, deadlines, and stakeholder expectations.</p>
+                  </div>
+                  <p class="certs__meta"><span>LinkedIn Learning</span><span>2024</span></p>
+                </li>
+                <li class="certs__item">
+                  <div>
+                    <h4 class="certs__name">Data Management and Analysis in Data Science</h4>
+                    <p class="certs__note">Skills in analyzing large datasets and preparing insights for decision-making.</p>
+                  </div>
+                  <p class="certs__meta"><span>Coursera</span><span>2024</span></p>
+                </li>
+                <li class="certs__item">
+                  <div>
+                    <h4 class="certs__name">AI Driven SQA: Manual &amp; Automation Testing</h4>
+                    <p class="certs__note">Manual testing, test automation, and AI-assisted QA workflows.</p>
+                  </div>
+                  <p class="certs__meta"><span>Ostad</span><span>2024</span></p>
+                </li>
+                <li class="certs__item">
+                  <div>
+                    <h4 class="certs__name">ANGULAR and ASP.NET Core REST API - Real World Application</h4>
+                    <p class="certs__note">Learn and Create Full-Stack Web Applications with Angular and EF Core with the ASP.NET Core Web API.</p>
+                  </div>
+                  <p class="certs__meta"><span>Udemy</span><span>2023</span></p>
+                </li>
+              </ul>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -303,6 +269,24 @@
           <article class="role" id="role-hsenid" data-timeline data-start="2022-05" data-end="2022-10" data-chart-label="hSenid Business Solutions PLC">
             <div class="role__when">
               <p class="role__dates">May 2022 – Oct 2022</p>
+              <p class="role__duration" data-duration></p>
+            </div>
+            <div class="role__body">
+              <h3 class="role__title">Implementation Engineer</h3>
+              <p class="role__org">hSenid Business Solutions PLC</p>
+              <ul class="role__duties">
+                <li>Configured and maintained client CRM/HRIS reporting environments, resolving configuration and data-access issues to ensure accurate employee, payroll, and engagement data for KPI tracking.</li>
+                <li>Designed and delivered 80+ Crystal Reports and Power BI dashboards, improving leadership visibility into payroll trends and workforce productivity and reducing manual data errors by 15%.</li>
+                <li>Built automated SQL jobs and real-time alerts for data validation, proactively flagging compliance and performance issues and cutting issue-resolution time by 20% across HR and finance teams.</li>
+                <li>Communicated clearly with sales, operations, and HR managers, translating raw data into actionable insights for resource planning and process optimization.</li>
+              </ul>
+              <p class="role__skills"><span class="role__skills-label">Skills applied</span> CRM/HRIS, Crystal Reports, Power BI, SQL, Dashboard design</p>
+            </div>
+          </article>
+
+          <article class="role" id="role-hsenid" data-timeline data-start="2021-05" data-end="2026-10" data-chart-label="hSenid Business Solutions PLC">
+            <div class="role__when">
+              <p class="role__dates">May 2021 – Oct 2026</p>
               <p class="role__duration" data-duration></p>
             </div>
             <div class="role__body">
@@ -433,7 +417,7 @@
               </div>
             </article>
 
-            <!-- Card 3 (NEW): Data Validation Tool -->
+            <!-- Card 3: Data Validation Tool -->
             <article class="project-card" data-category="project">
               <div class="project-card__header">
                 <h3 class="project-card__title">SQL Data Validation Tool</h3>
@@ -459,7 +443,7 @@
               </div>
             </article>
 
-            <!-- Card 4 (NEW): Healthcare ERP Testing -->
+            <!-- Card 4: Healthcare ERP Testing -->
             <article class="project-card" data-category="project">
               <div class="project-card__header">
                 <h3 class="project-card__title">Healthcare ERP Test Suite</h3>
@@ -539,43 +523,6 @@
     </div>
   </footer>
 
-  <!-- Main Site Script -->
   <script src="script.js"></script>
-
-  <!-- Inline Script for Project Filtering -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const filterBtns = document.querySelectorAll('.filter-btn');
-      const projectCards = document.querySelectorAll('.project-card');
-
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          // Update active button state
-          filterBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-
-          const filterValue = btn.getAttribute('data-filter');
-
-          projectCards.forEach(card => {
-            const category = card.getAttribute('data-category');
-            
-            // Add temporary animation class
-            card.classList.add('is-filtering');
-            
-            setTimeout(() => {
-              if (filterValue === 'all' || filterValue === category) {
-                card.classList.remove('is-hidden');
-              } else {
-                card.classList.add('is-hidden');
-              }
-              // Remove animation class after a tiny delay for smooth transition
-              setTimeout(() => card.classList.remove('is-filtering'), 50);
-            }, 200);
-          });
-        });
-      });
-    });
-  </script>
 </body>
-
 </html>
