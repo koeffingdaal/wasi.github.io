@@ -15,9 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeToggle = document.getElementById('theme-toggle');
   
   if (themeToggle) {
+    // Set initial aria states based on the theme set in the head script
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    themeToggle.setAttribute('aria-label', currentTheme === 'dark' ? 'Light theme' : 'Dark theme');
+    themeToggle.setAttribute('aria-pressed', currentTheme === 'dark');
+
     themeToggle.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      const current = document.documentElement.getAttribute('data-theme');
+      const newTheme = current === 'dark' ? 'light' : 'dark';
       
       document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
@@ -72,13 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const plotChart = document.getElementById('plot-chart');
 
   if (plotContainer && plotChart) {
-    // Find all elements with data-timeline
     const timelineItems = document.querySelectorAll('[data-timeline]');
     
     if (timelineItems.length > 0) {
       plotContainer.hidden = false;
 
-      // Find min and max years
       let minYear = Infinity;
       let maxYear = -Infinity;
 
@@ -101,27 +104,23 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const totalYears = maxYear - minYear;
 
-      // Helper to calculate percentage from year
       const getPercent = (yearStr) => {
         if (!yearStr) return 0;
         const year = parseInt(yearStr.split('-')[0], 10);
         return ((year - minYear) / totalYears) * 100;
       };
 
-      // Build Chart HTML
       let html = '';
 
       // 1. Axis (Top ticks)
       html += `<div class="plot__axis">`;
       for (let y = minYear; y <= maxYear; y++) {
         const left = ((y - minYear) / totalYears) * 100;
-        // Only show every 1 or 2 years if space is tight
         const step = totalYears > 8 ? 2 : 1;
         if ((y - minYear) % step === 0 || y === maxYear) {
           html += `<span class="plot__tick" style="left: ${left}%;">${y}</span>`;
         }
       }
-      // "Now" marker
       const nowPercent = ((currentYear - minYear) / totalYears) * 100;
       html += `<span class="plot__tick plot__tick--now" style="left: ${nowPercent}%; transform: translateX(-50%); padding-left: 0;">Now</span>`;
       html += `</div>`;
@@ -129,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // 2. Rows
       html += `<div class="plot__rows">`;
       
-      // 2a. Background overlays (Grid lines + Now line)
+      // 2a. Background overlays
       html += `<div class="plot__overlay">`;
       for (let y = minYear; y <= maxYear; y++) {
         const left = ((y - minYear) / totalYears) * 100;
@@ -144,7 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // 2b. List of items
       html += `<div class="plot__list">`;
       
-      // Sort items by start date descending (most recent first)
       const sortedItems = Array.from(timelineItems).sort((a, b) => {
         return new Date(b.getAttribute('data-start')) - new Date(a.getAttribute('data-start'));
       });
@@ -153,19 +151,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const start = item.getAttribute('data-start');
         const end = item.getAttribute('data-end');
         const label = item.getAttribute('data-chart-label') || 'Untitled';
-        const meta = item.getAttribute('data-chart-meta') || '';
+        
+        // NEW: Get the role (designation/degree) and tenure (dates) for the sub-text
+        const role = item.getAttribute('data-chart-role') || '';
+        const tenure = item.getAttribute('data-chart-tenure') || '';
+        
+        // Combine role and tenure into the meta line
+        const metaText = [role, tenure].filter(Boolean).join(' • ');
+
         const id = item.id;
         const isEdu = item.classList.contains('edu__item');
         
         const left = getPercent(start);
         const right = getPercent(end);
-        const width = Math.max(right - left, 1); // Ensure minimum visible width
+        const width = Math.max(right - left, 1);
 
         html += `
           <div class="plot__row">
             <a href="#${id}" class="plot__label">
               <span class="plot__org">${label}</span>
-              ${meta ? `<span class="plot__meta">${meta}</span>` : ''}
+              ${metaText ? `<span class="plot__meta">${metaText}</span>` : ''}
             </a>
             <div class="plot__track">
               <div class="plot__bar ${isEdu ? 'plot__bar--edu' : ''} ${!end ? 'plot__bar--now' : ''}" 
@@ -180,7 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
       
       plotChart.innerHTML = html;
 
-      // Trigger animation after a tiny delay
       setTimeout(() => {
         plotContainer.classList.add('is-drawn');
       }, 100);

@@ -111,7 +111,7 @@
         </figure>
       </div>
 
-      <!-- Career timeline: built by script.js from the data-* dates in About and Experience -->
+      <!-- Career timeline -->
       <div class="wrap">
         <div class="plot" id="plot" hidden>
           <div class="plot__head">
@@ -155,10 +155,11 @@
             <!-- Education Panel -->
             <div id="education" class="tab-panel active">
               <ul class="edu">
-                <!-- The data-* attributes here are read by script.js to build the timeline -->
+                <!-- ADDED data-chart-role AND data-chart-tenure FOR THE TIMELINE -->
                 <li class="edu__item" id="edu-aiub" data-timeline data-start="2018-01" data-end="2022-12" data-precision="year"
                   data-chart-label="American International University-Bangladesh"
-                  data-chart-meta="BSc in Computer Science &amp; Engineering, 2018 – 2022">
+                  data-chart-role="BSc in Computer Science & Engineering"
+                  data-chart-tenure="2018 – 2022">
                   <div>
                     <h4 class="edu__degree">BSc in Computer Science &amp; Engineering</h4>
                     <p class="edu__school">American International University - Bangladesh</p>
@@ -229,7 +230,11 @@
         </header>
 
         <div class="section__body">
-          <article class="role" id="role-quantanite" data-timeline data-start="2024-02" data-end="2024-09" data-chart-label="Quantanite Bangladesh Ltd">
+          <!-- ADDED data-chart-role AND data-chart-tenure FOR THE TIMELINE -->
+          <article class="role" id="role-quantanite" data-timeline data-start="2024-02" data-end="2024-09" 
+                   data-chart-label="Quantanite Bangladesh Ltd"
+                   data-chart-role="Senior Associate"
+                   data-chart-tenure="Feb 2024 – Sep 2024">
             <div class="role__when">
               <p class="role__dates">Feb 2024 – Sep 2024</p>
               <p class="role__duration" data-duration></p>
@@ -248,7 +253,10 @@
             </div>
           </article>
 
-          <article class="role" id="role-mediklaud" data-timeline data-start="2022-11" data-end="2024-02" data-chart-label="Global MediKlaud (BD) Ltd">
+          <article class="role" id="role-mediklaud" data-timeline data-start="2022-11" data-end="2024-02" 
+                   data-chart-label="Global MediKlaud (BD) Ltd"
+                   data-chart-role="Implementation Engineer"
+                   data-chart-tenure="Nov 2022 – Feb 2024">
             <div class="role__when">
               <p class="role__dates">Nov 2022 – Feb 2024</p>
               <p class="role__duration" data-duration></p>
@@ -266,27 +274,12 @@
             </div>
           </article>
 
-          <article class="role" id="role-hsenid" data-timeline data-start="2022-05" data-end="2022-10" data-chart-label="hSenid Business Solutions PLC">
+          <article class="role" id="role-hsenid" data-timeline data-start="2022-05" data-end="2022-10" 
+                   data-chart-label="hSenid Business Solutions PLC"
+                   data-chart-role="Implementation Engineer"
+                   data-chart-tenure="May 2022 – Oct 2022">
             <div class="role__when">
               <p class="role__dates">May 2022 – Oct 2022</p>
-              <p class="role__duration" data-duration></p>
-            </div>
-            <div class="role__body">
-              <h3 class="role__title">Implementation Engineer</h3>
-              <p class="role__org">hSenid Business Solutions PLC</p>
-              <ul class="role__duties">
-                <li>Configured and maintained client CRM/HRIS reporting environments, resolving configuration and data-access issues to ensure accurate employee, payroll, and engagement data for KPI tracking.</li>
-                <li>Designed and delivered 80+ Crystal Reports and Power BI dashboards, improving leadership visibility into payroll trends and workforce productivity and reducing manual data errors by 15%.</li>
-                <li>Built automated SQL jobs and real-time alerts for data validation, proactively flagging compliance and performance issues and cutting issue-resolution time by 20% across HR and finance teams.</li>
-                <li>Communicated clearly with sales, operations, and HR managers, translating raw data into actionable insights for resource planning and process optimization.</li>
-              </ul>
-              <p class="role__skills"><span class="role__skills-label">Skills applied</span> CRM/HRIS, Crystal Reports, Power BI, SQL, Dashboard design</p>
-            </div>
-          </article>
-
-          <article class="role" id="role-hsenid" data-timeline data-start="2021-05" data-end="2026-10" data-chart-label="hSenid Business Solutions PLC">
-            <div class="role__when">
-              <p class="role__dates">May 2021 – Oct 2026</p>
               <p class="role__duration" data-duration></p>
             </div>
             <div class="role__body">
