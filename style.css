@@ -1253,3 +1253,19 @@ section[id], article[id], li[id] {
         clip-path: none !important;
     }
 }
+
+/* Make Profile Photo a Perfect Circle */
+.hero__photo {
+    border-radius: 50% !important;
+    aspect-ratio: 1 / 1 !important;
+    max-width: 22rem; /* Slightly larger to compensate for the circle */
+    margin-inline: auto; /* Center it */
+}
+
+.hero__photo img {
+    aspect-ratio: 1 / 1 !important;
+    object-position: 50% 15%; /* Adjust this if your head gets cut off */
+    border-radius: 50% !important;
+    border: 4px solid var(--surface) !important; /* Creates a nice framing effect */
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
+}
