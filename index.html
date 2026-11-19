@@ -4,951 +4,453 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wasi Ul Islam Tasin | Implementation Engineer</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <title>Wasi Ul Islam Tasin | QA-minded Implementation Engineer</title>
+  <meta name="description" content="QA-minded Implementation Engineer in Dhaka, Bangladesh. Manual and Selenium automation testing, API troubleshooting, SQL validation, and enterprise ERP, HRIS and healthcare systems." />
+  <meta name="theme-color" content="#f6f7f9" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Wasi Ul Islam Tasin | QA-minded Implementation Engineer" />
+  <meta property="og:description" content="QA-minded Implementation Engineer. Manual and Selenium automation testing, API troubleshooting, SQL validation, and enterprise ERP, HRIS and healthcare systems." />
+  <meta property="og:url" content="https://koeffingdaal.github.io/wasi.github.io/" />
+  <meta property="og:image" content="https://koeffingdaal.github.io/wasi.github.io/images/Profile.jpg" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2311151c'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' text-anchor='middle' fill='%23ff7b3a'%3EW%3C/text%3E%3C/svg%3E" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+
+  <!-- Set the theme before first paint to avoid a flash -->
+  <script>
+    (function () {
+      var t;
+      try { t = localStorage.getItem('theme'); } catch (e) { }
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.classList.add('js');
+    })();
+  </script>
   <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Wasi Ul Islam Tasin",
+    "jobTitle": "Implementation Engineer",
+    "email": "mailto:wasi.wui@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" },
+    "alumniOf": "American International University-Bangladesh",
+    "sameAs": ["https://www.linkedin.com/in/wasi-ul-islam-t-491171162/", "https://github.com/koeffingdaal"]
+  }
+  </script>
 </head>
 
 <body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="container">
-      <div class="nav-brand">
-        <a href="#home" class="logo">Wasi<span class="black-dot">.</span></a>
-      </div>
-      <div class="nav-menu">
-        <ul class="nav-list">
-          <li><a href="#home" class="nav-link active">Home</a></li>
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#experience" class="nav-link">Experience</a></li>
-          <li><a href="#skills" class="nav-link">Skills</a></li>
-          <li><a href="#projects" class="nav-link">Projects</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-        <button class="mobile-menu-btn">
-          <i class="fas fa-bars"></i>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="progress" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="brand" href="#home">Wasi Ul Islam Tasin</a>
+
+      <nav id="site-nav" class="site-nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="site-header__tools">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Dark theme" aria-pressed="false">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.75" />
+            <path d="M12 3.75a8.25 8.25 0 0 1 0 16.5z" fill="currentColor" />
+          </svg>
+        </button>
+        <button class="icon-btn nav-toggle" id="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+            <path d="M4 7.5h16M4 12h16M4 16.5h16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+          </svg>
         </button>
       </div>
     </div>
-  </nav>
+  </header>
 
-  <!-- Hero Section -->
-   
-  <section id="home" class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-text">
-          <h3 class="hero-greeting">Hello, I'm</h3>
-          <h1 class="hero-title">
-            Wasi Ul Islam <span class="text-black">Tasin</span>
+  <main id="main">
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <div class="wrap hero__grid">
+        <div class="hero__text">
+          <h1 class="hero__name">
+            <span class="hero__line"><span>Wasi Ul Islam</span></span>
+            <span class="hero__line"><span>Tasin</span></span>
           </h1>
-          <h2 class="hero-subtitle">
-            Implementation Engineer & AI Integration Specialist
-          </h2>
-          <p class="hero-description">
-            Customer-focused Implementation Engineer with 3.5+ years of
-            experience in software deployment, AI integration, and enterprise
-            system implementation.
+          <p class="hero__role">QA-minded Implementation Engineer</p>
+          <p class="hero__lede">
+            3.5+ years delivering enterprise ERP, HRIS, and healthcare
+            systems, turning client requirements into verified, working
+            software.
           </p>
-          <div class="hero-buttons">
-            <a href="#contact" class="btn btn-primary">
-              <i class="fas fa-envelope"></i> Contact Me
-            </a>
-            <a href="Wasi-Ul-Islam-Tasin.pdf" download class="btn btn-outline">
-              <i class="fas fa-download"></i> Download CV
-            </a>
+          <div class="hero__actions">
+            <a class="btn btn--solid" href="#contact">Contact me</a>
+            <a class="btn btn--ghost" href="Wasi-Ul-Islam-Tasin.pdf" download>Download CV</a>
           </div>
-          <div class="hero-social">
-            <a href="https://linkedin.com/in/wasitasin" target="_blank" class="social-link">
-              <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="https://github.com/wasitasin" target="_blank" class="social-link">
-              <i class="fab fa-github"></i>
-            </a>
-            <a href="mailto:wasi.wui@gmail.com" class="social-link">
-              <i class="fas fa-envelope"></i>
-            </a>
-          </div>
+          <ul class="hero__links">
+            <li><a href="https://www.linkedin.com/in/wasi-ul-islam-t-491171162/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://github.com/koeffingdaal" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="mailto:wasi.wui@gmail.com">Email</a></li>
+          </ul>
         </div>
 
-        <!-- Profile Picture with Orange Theme -->
-        <div class="hero-image">
-          <div class="image-container orange-gradient">
-            <img src="images/Profile.jpg" alt="Wasi Ul Islam Tasin" class="profile-pic" />
+        <figure class="hero__photo">
+          <img src="images/Profile.jpg" alt="Wasi Ul Islam Tasin" width="1080" height="1094" />
+        </figure>
+      </div>
+
+      <!-- Career timeline: built by script.js from the data-* dates in About and Experience -->
+      <div class="wrap">
+        <div class="plot" id="plot" hidden>
+          <div class="plot__head">
+            <h2 class="plot__title">Career, plotted</h2>
+            <p class="plot__note">Study and work on one timeline. Select a row to jump to its details. Education dates are year-level.</p>
           </div>
+          <div class="plot__chart" id="plot-chart"></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- About Section -->
-  <section id="about" class="section about">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">
-          About <span class="orange-text">Me</span>
-        </h2>
-      </div>
+    <!-- About -->
+    <section id="about" class="section">
+      <div class="wrap section__grid">
+        <header class="section__head">
+          <h2 class="section__title">About</h2>
+        </header>
 
-      <div class="about-content">
-        <!-- Left Side -->
-        <div class="about-left">
-          <!-- Professional Summary Card -->
-          <div class="professional-summary-card">
-            <h2 class="summary-title">Professional Summary</h2>
-            <hr class="summary-divider" />
-            <p class="summary-text">
-              Customer-focused Implementation Engineer with 3.5+ years of
-              experience in software deployment, AI integration, and
-              enterprise system implementation. Skilled in consulting with
-              customers to translate business goals into technical
-              architectures and deployment plans, integrating data workflows,
-              and developing custom tools and API-driven solutions that
-              enhance automation and scalability. Proficient in Python, C#,
-              and SQL, with hands-on experience in system integration, RESTful
-              API development, and data transformation (ETL) for AI and
-              analytics solutions.
-            </p>
-          </div>
+        <div class="section__body">
+          <p class="about__summary">
+            QA-minded Implementation Engineer with 3.5+ years delivering
+            enterprise ERP, HRIS, and healthcare systems, turning client
+            requirements into verified, working software. Hands-on with manual
+            and Selenium automation testing, defect tracking in JIRA and
+            Bugzilla, RESTful API troubleshooting, and SQL-based data
+            validation. C#, ASP.NET, and Python background lets me trace a bug
+            to its source instead of reporting only the symptom. Known for
+            99.9% data accuracy, clear defect documentation, and same-day
+            delivery under pressure, working daily with English-speaking
+            clients and cross-functional teams. Building on this foundation
+            with Playwright, k6, and AI-assisted testing.
+          </p>
 
-          <!-- Education Card -->
-          <div class="education-card">
-            <h2 class="education-title">Education</h2>
-            <div class="education-item">
-              <div class="education-header">
-                <h3 class="education-degree">
-                  BSc in Computer Science & Engineering
-                </h3>
-                <span class="cgpa-badge">CGPA: 3.16/4.00</span>
+          <h3 class="subhead">Education</h3>
+          <ul class="edu">
+            <li class="edu__item" id="edu-aiub" data-timeline data-start="2018-01" data-end="2022-12" data-precision="year"
+              data-chart-label="American International University-Bangladesh"
+              data-chart-meta="BSc in Computer Science &amp; Engineering, 2018 – 2022">
+              <div>
+                <h4 class="edu__degree">BSc in Computer Science &amp; Engineering</h4>
+                <p class="edu__school">American International University - Bangladesh</p>
               </div>
-              <p class="education-institution">
-                American International University - Bangladesh
+              <p class="edu__meta"><span>2018 – 2022</span><span>CGPA 3.43 / 4.00</span></p>
+            </li>
+            <li class="edu__item">
+              <div>
+                <h4 class="edu__degree">HSC in Science</h4>
+                <p class="edu__school">Ideal College, Dhanmondi</p>
+              </div>
+              <p class="edu__meta"><span>2015 – 2017</span><span>GPA 3.92 / 5.00</span></p>
+            </li>
+            <li class="edu__item">
+              <div>
+                <h4 class="edu__degree">SSC in Science</h4>
+                <p class="edu__school">Model Academy</p>
+              </div>
+              <p class="edu__meta"><span>2015</span><span>GPA 4.78 / 5.00</span></p>
+            </li>
+          </ul>
+
+          <h3 class="subhead">Certifications</h3>
+          <ul class="certs">
+            <li class="certs__item">
+              <div>
+                <h4 class="certs__name">Project Management Foundations: Small Projects</h4>
+                <p class="certs__note">Practical knowledge in managing tasks, deadlines, and stakeholder expectations.</p>
+              </div>
+              <p class="certs__meta"><span>LinkedIn Learning</span><span>2024</span></p>
+            </li>
+            <li class="certs__item">
+              <div>
+                <h4 class="certs__name">Data Management and Analysis in Data Science</h4>
+                <p class="certs__note">Skills in analyzing large datasets and preparing insights for decision-making.</p>
+              </div>
+              <p class="certs__meta"><span>Coursera</span><span>2024</span></p>
+            </li>
+            <li class="certs__item">
+              <div>
+                <h4 class="certs__name">AI Driven SQA: Manual &amp; Automation Testing</h4>
+                <p class="certs__note">Manual testing, test automation, and AI-assisted QA workflows.</p>
+              </div>
+              <p class="certs__meta"><span>Ostad</span><span>2026</span></p>
+            </li>
+            <li class="certs__item">
+              <div>
+                <h4 class="certs__name">ANGULAR and ASP.NET Core REST API - Real World Application</h4>
+                <p class="certs__note">Learn and Create Full-Stack Web Applications with Angular and EF Core with the ASP.NET Core Web API.</p>
+              </div>
+              <p class="certs__meta"><span>Udemy</span><span>2025</span></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="section">
+      <div class="wrap section__grid">
+        <header class="section__head">
+          <h2 class="section__title">Experience</h2>
+        </header>
+
+        <div class="section__body">
+          <article class="role" id="role-quantanite" data-timeline data-start="2026-02" data-end="2026-09" data-chart-label="Quantanite Bangladesh Ltd">
+            <div class="role__when">
+              <p class="role__dates">Feb 2026 – Sep 2026</p>
+              <p class="role__duration" data-duration></p>
+            </div>
+            <div class="role__body">
+              <h3 class="role__title">Senior Associate</h3>
+              <p class="role__org">Quantanite Bangladesh Ltd</p>
+              <ul class="role__duties">
+                <li>Entered and verified 1,200+ records per shift in internal systems and databases for a major U.S. client, maintaining 99.9% accuracy through strong attention to detail and checking each record for completeness, correctness, and consistency.</li>
+                <li>Cross-verified data across sources to ensure 100% adherence to client requirements and specifications, identifying and correcting discrepancies the same day and cutting clarification follow-ups by 30%.</li>
+                <li>Multitasked and worked independently to meet strict deadlines, finishing ahead of schedule on 95% of workdays without compromising quality standards.</li>
+                <li>Collaborated in English with project coordinators and team leads to resolve open questions, cutting average issue-resolution time by 25% while keeping same-day completion.</li>
+                <li>Handled client data professionally and in line with confidentiality and data security policies.</li>
+              </ul>
+              <p class="role__skills"><span class="role__skills-label">Skills applied</span> Data entry, Data verification, Quality control (QC), Data processing, Stakeholder communication</p>
+            </div>
+          </article>
+
+          <article class="role" id="role-mediklaud" data-timeline data-start="2024-11" data-end="2026-02" data-chart-label="Global MediKlaud (BD) Ltd">
+            <div class="role__when">
+              <p class="role__dates">Nov 2024 – Feb 2026</p>
+              <p class="role__duration" data-duration></p>
+            </div>
+            <div class="role__body">
+              <h3 class="role__title">Implementation Engineer</h3>
+              <p class="role__org">Global MediKlaud (BD) Ltd</p>
+              <ul class="role__duties">
+                <li>Deployed and configured hospital ERP systems against client requirements, analyzing end-user requirements and working with cross-functional teams to deliver them.</li>
+                <li>Logged, tracked, and resolved end-user issues in JIRA and Bugzilla through the full ticket life cycle, using data-driven diagnosis to keep daily operations running smoothly.</li>
+                <li>Analyzed operational data across hospital ERP systems to diagnose workflow gaps and recommend targeted improvements.</li>
+                <li>Partnered with project managers and leadership to align ERP outputs with organizational needs, and documented and delivered monthly KPI reports to stakeholders.</li>
+              </ul>
+              <p class="role__skills"><span class="role__skills-label">Skills applied</span> Hospital ERP, JIRA, Bugzilla, Data analysis, KPI reporting</p>
+            </div>
+          </article>
+
+          <article class="role" id="role-hsenid" data-timeline data-start="2022-05" data-end="2024-10" data-chart-label="hSenid Business Solutions PLC">
+            <div class="role__when">
+              <p class="role__dates">May 2022 – Oct 2024</p>
+              <p class="role__duration" data-duration></p>
+            </div>
+            <div class="role__body">
+              <h3 class="role__title">Implementation Engineer</h3>
+              <p class="role__org">hSenid Business Solutions PLC</p>
+              <ul class="role__duties">
+                <li>Configured and maintained client CRM/HRIS reporting environments, resolving configuration and data-access issues to ensure accurate employee, payroll, and engagement data for KPI tracking.</li>
+                <li>Designed and delivered 80+ Crystal Reports and Power BI dashboards, improving leadership visibility into payroll trends and workforce productivity and reducing manual data errors by 15%.</li>
+                <li>Built automated SQL jobs and real-time alerts for data validation, proactively flagging compliance and performance issues and cutting issue-resolution time by 20% across HR and finance teams.</li>
+                <li>Communicated clearly with sales, operations, and HR managers, translating raw data into actionable insights for resource planning and process optimization.</li>
+              </ul>
+              <p class="role__skills"><span class="role__skills-label">Skills applied</span> CRM/HRIS, Crystal Reports, Power BI, SQL, Dashboard design</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+      <div class="wrap section__grid">
+        <header class="section__head">
+          <h2 class="section__title">Skills</h2>
+        </header>
+
+        <div class="section__body">
+          <dl class="skills">
+            <div class="skills__row">
+              <dt>Software testing &amp; QA</dt>
+              <dd>Manual testing, STLC, defect life cycle, test case design, requirement analysis, regression testing, defect reporting, test documentation, Selenium automation testing, SQL data validation; AI Driven SQA certification (Ostad).</dd>
+            </div>
+            <div class="skills__row">
+              <dt>AI-assisted testing</dt>
+              <dd>Generating test cases, test data, and bug reports with ChatGPT, Claude, and Gemini, and validating the output manually.</dd>
+            </div>
+            <div class="skills__row">
+              <dt>API &amp; debugging</dt>
+              <dd>RESTful API troubleshooting, client-server issue diagnosis, defect tracking in JIRA and Bugzilla.</dd>
+            </div>
+            <div class="skills__row">
+              <dt>Currently learning</dt>
+              <dd>Playwright (TypeScript), Postman, k6, OWASP ZAP, GitHub Actions.</dd>
+            </div>
+            <div class="skills__row">
+              <dt>Data work</dt>
+              <dd>Data entry, Data verification, Quality control (QC), Data processing, Reporting, Documentation, Stakeholder communication.</dd>
+            </div>
+            <div class="skills__row">
+              <dt>AI &amp; tools</dt>
+              <dd>ChatGPT, Claude, Gemini, Google AI Studio, MS Office (Excel, Word, PowerPoint), Power BI, Crystal Reports, JIRA, Bugzilla, VS Code.</dd>
+            </div>
+            <div class="skills__row">
+              <dt>Languages &amp; databases</dt>
+              <dd>SQL (MS SQL Server), MySQL, Python, C#, ASP.NET Core/MVC, Entity Framework Core.</dd>
+            </div>
+            <div class="skills__row">
+              <dt>Systems</dt>
+              <dd>ERP, HRIS, Hospital ERP, payroll systems.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+        <!-- Projects -->
+    <section id="projects" class="section">
+      <div class="wrap section__grid">
+        <header class="section__head">
+          <h2 class="section__title">Projects &amp; Thesis</h2>
+        </header>
+
+        <div class="section__body">
+          
+          <div class="projects-grid">
+            
+            <!-- Card 1: Thesis -->
+            <article class="project-card">
+              <div class="project-card__header">
+                <h3 class="project-card__title">Data Mining for Fraud Detection in Financial Transactions</h3>
+                <span class="project-card__badge project-card__badge--thesis">THESIS</span>
+              </div>
+              <p class="project-card__desc">
+                Developed ML models using classification and clustering to identify fraudulent transactions in large-scale financial data. Applied feature engineering and data preprocessing to ensure data quality, accuracy, and reliability. Generated clear documentation and performance metrics (accuracy, precision, recall) for stakeholders.
               </p>
-              <p class="education-duration">2018 - 2022</p>
-            </div>
-            <div class="education-item">
-              <div class="education-header">
-                <h3 class="education-degree">HSC in Science</h3>
-                <span class="cgpa-badge">GPA: 3.92/5.00</span>
+              <div class="project-card__tags">
+                <span>Python</span>
+                <span>Scikit-learn</span>
+                <span>Pandas</span>
+                <span>NumPy</span>
+                <span>Keras</span>
+                <span>Tensorflow</span>
               </div>
-              <p class="education-institution">Ideal College, Dhanmondi</p>
-              <p class="education-duration">2015 - 2017</p>
-            </div>
-            <div class="education-item">
-              <div class="education-header">
-                <h3 class="education-degree">SSC in Science</h3>
-                <span class="cgpa-badge">GPA: 4.78/5.00</span>
-              </div>
-              <p class="education-institution">Model Academy</p>
-              <p class="education-duration">2015</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Side -->
-        <div class="about-right">
-          <!-- Certifications Card -->
-          <div class="certifications-card">
-            <h2 class="certifications-title">Certifications</h2>
-            <div class="certifications-list">
-              <div class="certification-item">
-                <h3 class="certification-name">
-                  Project Management Foundations: Small Projects
-                </h3>
-                <p class="certification-source">
-                  Practical knowledge in managing tasks, deadlines, and
-                  stakeholder expectations.
-                </p>
-              </div>
-              <div class="certification-item">
-                <h3 class="certification-name">
-                  Data Management and Analysis in Data Science
-                </h3>
-                <p class="certification-source">
-                  Skills in analyzing large datasets and preparing insights
-                  for decision-making.
-                </p>
-              </div>
-              <div class="certification-item">
-                <h3 class="certification-name">
-                  Data Operations and Management
-                </h3>
-                <p class="certification-source">
-                  Strong foundation in maintaining operational data integrity
-                  and reporting.
-                </p>
-              </div>
-              <div class="certification-item">
-                <h3 class="certification-name">
-                  ANGULAR and ASP.NET Core REST API - Real World Application
-                </h3>
-                <p class="certification-source">
-                  Udemy – Learn and Create Full-Stack Web Applications with
-                  Angular and EF Core with the ASP.NET Core Web API.
-                </p>
-                <p class="certification-year">2021</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Stats Cards -->
-          <div class="stats-cards">
-            <div class="stat-card">
-              <div class="stat-icon">
-                <i class="fas fa-briefcase"></i>
-              </div>
-              <div class="stat-content">
-                <div class="stat-number">3.5+</div>
-                <div class="stat-label">Years Experience</div>
-              </div>
-            </div>
-
-            <div class="stat-card">
-              <div class="stat-icon">
-                <i class="fas fa-tasks"></i>
-              </div>
-              <div class="stat-content">
-                <div class="stat-number">50+</div>
-                <div class="stat-label">Projects Completed</div>
-              </div>
-            </div>
-
-            <div class="stat-card">
-              <div class="stat-icon">
-                <i class="fas fa-chart-line"></i>
-              </div>
-              <div class="stat-content">
-                <div class="stat-number">99.9%</div>
-                <div class="stat-label">Data Accuracy</div>
-              </div>
-            </div>
-
-            <div class="stat-card">
-              <div class="stat-icon">
-                <i class="fas fa-smile"></i>
-              </div>
-              <div class="stat-content">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Client Satisfaction</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience Section -->
-  <section class="experience" id="experience">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">
-          Work <span class="orange-word">Experience</span>
-        </h2>
-        <p class="section-subtitle">Professional Journey</p>
-      </div>
-
-      <div class="timeline-container">
-        <div class="experience-cards">
-          <!-- Card 1 -->
-          <div class="experience-card" data-start="2026-04">
-            <div class="experience-header">
-              <div class="experience-dates">
-                <div class="experience-date">
-                  <i class="fas fa-calendar-alt"></i>
-                  <span class="date-range">Apr 2026 – Present</span>
+              <div class="project-card__metrics">
+                <div class="metric">
+                  <span class="metric__label">Accuracy:</span>
+                  <span class="metric__value">High</span>
                 </div>
-                <div class="experience-duration">
-                  <i class="fas fa-clock"></i>
-                  <span class="duration-text">7 months</span>
+                <div class="metric">
+                  <span class="metric__label">Precision:</span>
+                  <span class="metric__value">Optimized</span>
+                </div>
+                <div class="metric">
+                  <span class="metric__label">Recall:</span>
+                  <span class="metric__value">Improved</span>
                 </div>
               </div>
-              <div class="experience-title">
-                <h3 class="job-title">Senior Associate</h3>
-                <div class="company">Quantanite Bangladesh Ltd</div>
+            </article>
+
+            <!-- Card 2: QA Framework -->
+            <article class="project-card">
+              <div class="project-card__header">
+                <h3 class="project-card__title">End-to-End QA Automation Framework</h3>
+                <span class="project-card__badge project-card__badge--project">PROJECT</span>
               </div>
-            </div>
-
-            <ul class="job-duties">
-              <li>
-                Verify parking reservations for cars, buses, motorcycles, and trucks
-                against vehicle and portal records, flagging mismatches and
-                unauthorised parking.
-              </li>
-              <li>
-                Issue violation tickets based on rule-based checks, in line with
-                company policy and regulations.
-              </li>
-              <li>
-                Manage Transfer of Liability (ToL) cases end to end, including
-                documentation after ticket issuance.
-              </li>
-              <li>
-                Maintain accurate records of tickets, vehicle details, and liability
-                transfers in the system. [Average 200 - 250 cases per day]
-              </li>
-              <li>
-                Resolve parking-related enquiries and support administrative operations
-                through the portal.
-              </li>
-            </ul>
-
-            <div class="experience-skills">
-              <div class="skills-label">Technologies Used:</div>
-              <div class="skills-tags">
-                <span class="skill-tag">Data Processing</span>
-                <span class="skill-tag">Quality Control</span>
-                <span class="skill-tag">Project Coordination</span>
-                <span class="skill-tag">Client Communication</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="experience-card">
-            <div class="experience-header">
-              <div class="experience-dates">
-                <div class="experience-date">
-                  <i class="fas fa-calendar-alt"></i>
-                  Nov 2024 – Apr 2026 
-                </div>
-                <div class="experience-duration">
-                  <i class="fas fa-clock"></i>
-                  1 Year 11 months
-                </div>
-              </div>
-              <div class="experience-title">
-                <h3 class="job-title">Implementation Engineer</h3>
-                <div class="company">Global MediKlaud (BD) Ltd</div>
-              </div>
-            </div>
-
-            <ul class="job-duties">
-              <li>
-                Collected and analyzed operational data from hospital ERP
-                systems to identify workflow gaps and recommend improvements.
-              </li>
-              <li>
-                Provided end-user support and reporting to ensure smooth
-                operations, resolving issues through data-driven
-                troubleshooting.
-              </li>
-              <li>
-                Collaborated with leadership and cross-functional teams to
-                align system outputs with organizational needs, supporting
-                decision-making on resource allocation and process efficiency.
-              </li>
-              <li>
-                Prepared and shared monthly KPI reports with stakeholders,
-                ensuring visibility into performance trends.
-              </li>
-            </ul>
-
-            <div class="experience-skills">
-              <div class="skills-label">Technologies Used:</div>
-              <div class="skills-tags">
-                <span class="skill-tag">Hospital ERP</span>
-                <span class="skill-tag">Data Analysis</span>
-                <span class="skill-tag">KPI Reporting</span>
-                <span class="skill-tag">Stakeholder Communication</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="experience-card" data-start="2024-11" data-end="2026-04">
-            <div class="experience-header">
-              <div class="experience-dates">
-                <div class="experience-date">
-                  <i class="fas fa-calendar-alt"></i>
-                  <span class="date-range">Nov 2024 – Apr 2026</span>
-                </div>
-                <div class="experience-duration">
-                  <i class="fas fa-clock"></i>
-                  <span class="duration-text">1 year 6 months</span>
-                </div>
-              </div>
-              <div class="experience-title">
-                <h3 class="job-title">Implementation Engineer</h3>
-                <div class="company">Global MediKlaud (BD) Ltd</div>
-              </div>
-            </div>
-
-            <ul class="job-duties">
-              <li>
-                Collected and analyzed operational data from hospital ERP systems to
-                identify workflow gaps and recommend improvements.
-              </li>
-              <li>
-                Provided end-user support and reporting to ensure smooth operations,
-                resolving issues through data-driven troubleshooting.
-              </li>
-              <li>
-                Collaborated with leadership and cross-functional teams to align system
-                outputs with organizational needs, supporting decision-making on
-                resource allocation and process efficiency.
-              </li>
-              <li>
-                Prepared and shared monthly KPI reports with stakeholders, ensuring
-                visibility into performance trends.
-              </li>
-            </ul>
-
-            <div class="experience-skills">
-              <div class="skills-label">Technologies Used:</div>
-              <div class="skills-tags">
-                <span class="skill-tag">Hospital ERP</span>
-                <span class="skill-tag">Data Analysis</span>
-                <span class="skill-tag">KPI Reporting</span>
-                <span class="skill-tag">Stakeholder Communication</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="experience-card">
-            <div class="experience-header">
-              <div class="experience-dates">
-                <div class="experience-date">
-                  <i class="fas fa-calendar-alt"></i>
-                  May 2022 – Oct 2024
-                </div>
-                <div class="experience-duration">
-                  <i class="fas fa-clock"></i>
-                  1 year 6 months
-                </div>
-              </div>
-              <div class="experience-title">
-                <h3 class="job-title">Implementation Engineer</h3>
-                <div class="company">hSenid Business Solutions PLC</div>
-              </div>
-            </div>
-
-            <ul class="job-duties">
-              <li>
-                Configured and maintained client CRM/HRIS reporting
-                environments, ensuring accurate capture of employee, payroll,
-                and engagement data used to track acquisition, conversion, and
-                retention KPIs.
-              </li>
-              <li>
-                Designed and delivered 80+ Crystal Reports and Power BI
-                dashboards, improving leadership visibility into cost per
-                acquisition, payroll trends, and workforce productivity,
-                driving a 15% reduction in manual data errors.
-              </li>
-              <li>
-                Built automated SQL jobs and real-time alerts to monitor
-                funnel health and compliance metrics, enabling faster
-                decision-making and 20% quicker issue resolution across HR and
-                finance teams.
-              </li>
-              <li>
-                Partnered with cross-functional stakeholders (sales,
-                operations, and HR managers) to translate raw data into
-                actionable insights for resource planning, pipeline
-                forecasting, and process optimization.
-              </li>
-            </ul>
-
-            <div class="experience-skills">
-              <div class="skills-label">Technologies Used:</div>
-              <div class="skills-tags">
-                <span class="skill-tag">CRM/HRIS</span>
-                <span class="skill-tag">Crystal Reports</span>
-                <span class="skill-tag">Power BI</span>
-                <span class="skill-tag">SQL</span>
-                <span class="skill-tag">Dashboard Design</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills Section -->
-  <section id="skills" class="section skills">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">
-          Technical <span class="orange-text">Skills</span>
-        </h2>
-        <p class="section-subtitle">Areas of Expertise</p>
-      </div>
-
-      <div class="skills-grid">
-        <!-- Card 1: Languages & Frameworks -->
-        <div class="skill-card">
-          <div class="skill-card-header">
-            <div class="skill-icon">
-              <i class="fas fa-code"></i>
-            </div>
-            <h3 class="skill-card-title">Languages & Frameworks</h3>
-          </div>
-          <div class="skill-card-content">
-            <div class="skill-tags">
-              <span class="skill-tag skill-tag-orange">C#</span>
-              <span class="skill-tag skill-tag-orange">ASP.NET Core</span>
-              <span class="skill-tag skill-tag-orange">ASP.NET MVC</span>
-              <span class="skill-tag skill-tag-blue">Python</span>
-              <span class="skill-tag skill-tag-purple">Entity Framework Core</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 2: Databases & Tools -->
-        <div class="skill-card">
-          <div class="skill-card-header">
-            <div class="skill-icon">
-              <i class="fas fa-database"></i>
-            </div>
-            <h3 class="skill-card-title">Databases & Tools</h3>
-          </div>
-          <div class="skill-card-content">
-            <div class="skill-tags">
-              <span class="skill-tag skill-tag-green">MS SQL</span>
-              <span class="skill-tag skill-tag-green">MySQL</span>
-              <span class="skill-tag skill-tag-orange">Power BI</span>
-              <span class="skill-tag skill-tag-blue">VS Code</span>
-              <span class="skill-tag skill-tag-blue">PyCharm</span>
-              <span class="skill-tag skill-tag-blue">Anaconda 3</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3: System Integration -->
-        <div class="skill-card">
-          <div class="skill-card-header">
-            <div class="skill-icon">
-              <i class="fas fa-cogs"></i>
-            </div>
-            <h3 class="skill-card-title">System Integration</h3>
-          </div>
-          <div class="skill-card-content">
-            <div class="skill-tags">
-              <span class="skill-tag skill-tag-purple">HRIS Systems</span>
-              <span class="skill-tag skill-tag-purple">ERP Systems</span>
-              <span class="skill-tag skill-tag-purple">Hospital ERP</span>
-              <span class="skill-tag skill-tag-green">Payroll Systems</span>
-              <span class="skill-tag skill-tag-blue">RESTful APIs</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 4: Data Analysis & Operations -->
-        <div class="skill-card">
-          <div class="skill-card-header">
-            <div class="skill-icon">
-              <i class="fas fa-chart-bar"></i>
-            </div>
-            <h3 class="skill-card-title">Data Analysis & Operations</h3>
-          </div>
-          <div class="skill-card-content">
-            <div class="skill-tags">
-              <span class="skill-tag skill-tag-orange">Statistical Analysis</span>
-              <span class="skill-tag skill-tag-orange">Data Processing</span>
-              <span class="skill-tag skill-tag-blue">ETL</span>
-              <span class="skill-tag skill-tag-purple">Model Development</span>
-              <span class="skill-tag skill-tag-green">Reporting Automation</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 5: Incident & Service Management -->
-        <div class="skill-card">
-          <div class="skill-card-header">
-            <div class="skill-icon">
-              <i class="fas fa-tools"></i>
-            </div>
-            <h3 class="skill-card-title">Incident & Service Management</h3>
-          </div>
-          <div class="skill-card-content">
-            <div class="skill-tags">
-              <span class="skill-tag skill-tag-blue">JIRA</span>
-              <span class="skill-tag skill-tag-green">Bugzilla</span>
-              <span class="skill-tag skill-tag-orange">SLA Monitoring</span>
-              <span class="skill-tag skill-tag-blue">Escalation Handling</span>
-              <span class="skill-tag skill-tag-green">Client Training</span>
-              <span class="skill-tag skill-tag-orange">End-User Support</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 6: Reporting & Documentation -->
-        <div class="skill-card">
-          <div class="skill-card-header">
-            <div class="skill-icon">
-              <i class="fas fa-file-alt"></i>
-            </div>
-            <h3 class="skill-card-title">Reporting & Documentation</h3>
-          </div>
-          <div class="skill-card-content">
-            <div class="skill-tags">
-              <span class="skill-tag skill-tag-blue">Microsoft Office</span>
-              <span class="skill-tag skill-tag-green">Excel</span>
-              <span class="skill-tag skill-tag-orange">PowerPoint</span>
-              <span class="skill-tag skill-tag-blue">Word</span>
-              <span class="skill-tag skill-tag-green">Crystal Reports</span>
-              <span class="skill-tag skill-tag-orange">Business Documentation</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="section projects">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">
-          Projects & <span class="text-blue">Thesis</span>
-        </h2>
-        <p class="section-subtitle">My Recent Works</p>
-      </div>
-      <div class="projects-grid">
-        <!-- Thesis Project -->
-        <div class="project-card">
-          <div class="project-header">
-            <h3 class="project-title">
-              Data Mining for Fraud Detection in Financial Transactions
-            </h3>
-            <span class="project-type thesis">Thesis</span>
-          </div>
-          <p class="project-description">
-            Developed ML models using classification and clustering to
-            identify fraudulent transactions in large-scale financial data.
-            Applied feature engineering and data preprocessing to ensure data
-            quality, accuracy, and reliability. Generated clear documentation
-            and performance metrics (accuracy, precision, recall) for
-            stakeholders.
-          </p>
-          <div class="project-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Scikit-learn</span>
-            <span class="tech-tag">Pandas</span>
-            <span class="tech-tag">NumPy</span>
-            <span class="tech-tag">Keras</span>
-            <span class="tech-tag">Tensorflow</span>
-          </div>
-          <div class="project-metrics">
-            <div class="metric">
-              <span class="metric-label">Accuracy:</span>
-              <span class="metric-value">High</span>
-            </div>
-            <div class="metric">
-              <span class="metric-label">Precision:</span>
-              <span class="metric-value">Optimized</span>
-            </div>
-            <div class="metric">
-              <span class="metric-label">Recall:</span>
-              <span class="metric-value">Improved</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 1 -->
-        <div class="project-card">
-          <div class="project-header">
-            <h3 class="project-title">Fraud Detection System</h3>
-            <span class="project-type project">Project</span>
-          </div>
-          <p class="project-description">
-            Analyzed large transaction datasets to detect anomalies, applying
-            statistical models for risk monitoring and prevention of financial
-            losses. Produced reports and visualizations to support
-            decision-making and highlight suspicious activity patterns.
-          </p>
-          <div class="project-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Scikit-learn</span>
-            <span class="tech-tag">Data Analysis</span>
-            <span class="tech-tag">Visualization</span>
-          </div>
-          <div class="project-features">
-            <h4>Key Features:</h4>
-            <ul>
-              <li>Anomaly detection in transactions</li>
-              <li>Statistical risk modeling</li>
-              <li>Interactive dashboards</li>
-              <li>Real-time monitoring</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Dashboard Project -->
-        <div class="project-card">
-          <div class="project-header">
-            <h3 class="project-title">Enterprise Reporting Dashboards</h3>
-            <span class="project-type professional">Professional</span>
-          </div>
-          <p class="project-description">
-            Designed and delivered 80+ Crystal Reports and Power BI dashboards
-            for HRIS/ERP systems, improving leadership visibility into cost
-            per acquisition, payroll trends, and workforce productivity,
-            driving a 15% reduction in manual data errors.
-          </p>
-          <div class="project-tech">
-            <span class="tech-tag">Power BI</span>
-            <span class="tech-tag">Crystal Reports</span>
-            <span class="tech-tag">SQL</span>
-            <span class="tech-tag">Dashboard Design</span>
-            <span class="tech-tag">HRIS/ERP</span>
-          </div>
-          <div class="project-stats">
-            <div class="stat">
-              <i class="fas fa-chart-pie"></i>
-              <span>80+ Dashboards</span>
-            </div>
-            <div class="stat">
-              <i class="fas fa-percentage"></i>
-              <span>15% Error Reduction</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- NEW PROJECT 4: AI-Powered Customer Support Chatbot -->
-        <div class="project-card">
-          <div class="project-header">
-            <h3 class="project-title">AI-Powered Customer Support Chatbot</h3>
-            <span class="project-type project">Project</span>
-          </div>
-          <p class="project-description">
-            Developed an intelligent chatbot using NLP techniques to automate
-            customer support responses. Integrated with REST APIs for seamless
-            data flow and reduced response time by 40%. Implemented intent
-            recognition and context-aware conversation handling.
-          </p>
-          <div class="project-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">NLP</span>
-            <span class="tech-tag">Transformers</span>
-            <span class="tech-tag">REST API</span>
-            <span class="tech-tag">Flask</span>
-            <span class="tech-tag">Dialogflow</span>
-          </div>
-          <div class="project-features">
-            <h4>Key Features:</h4>
-            <ul>
-              <li>Intent recognition & entity extraction</li>
-              <li>Multi-language support</li>
-              <li>Real-time response generation</li>
-              <li>Analytics dashboard for conversations</li>
-            </ul>
-          </div>
-          <div class="project-metrics">
-            <div class="metric">
-              <span class="metric-label">Response Time:</span>
-              <span class="metric-value">↓40%</span>
-            </div>
-            <div class="metric">
-              <span class="metric-label">Accuracy:</span>
-              <span class="metric-value">92%</span>
-            </div>
-            <div class="metric">
-              <span class="metric-label">CSAT Score:</span>
-              <span class="metric-value">4.5/5</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="section contact">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">
-          Get In <span class="text-blue">Touch</span>
-        </h2>
-        <p class="section-subtitle">Available for opportunities</p>
-      </div>
-      <div class="contact-content">
-        <div class="contact-info">
-          <div class="contact-card">
-            <div class="contact-icon">
-              <i class="fas fa-envelope"></i>
-            </div>
-            <div class="contact-details">
-              <h3>Email</h3>
-              <p>wasi.wui@gmail.com</p>
-            </div>
-          </div>
-          <div class="contact-card">
-            <div class="contact-icon">
-              <i class="fas fa-map-marker-alt"></i>
-            </div>
-            <div class="contact-details">
-              <h3>Location</h3>
-              <p>Dhaka, Bangladesh</p>
-            </div>
-          </div>
-          <div class="contact-card">
-            <div class="contact-icon">
-              <i class="fas fa-briefcase"></i>
-            </div>
-            <div class="contact-details">
-              <h3>Availability</h3>
-              <p class="available">Available for opportunities</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="references">
-          <h3 class="subsection-title">
-            <i class="fas fa-users"></i> References
-          </h3>
-          <div class="reference-cards">
-            <div class="reference-card">
-              <h4>Irfan Mohammed Abir</h4>
-              <p class="reference-position">
-                Head of Business Operations, ShopUp
+              <p class="project-card__desc">
+                Built an end-to-end QA framework on the OrangeHRM demo app: Playwright UI tests with the Page Object Model, fixtures, and parallel runs, plus Postman API tests, run on every push through a GitHub Actions pipeline with trace and HTML reports.
               </p>
-              <p class="reference-contact">irfan@shopup.org</p>
-            </div>
-            <div class="reference-card">
-              <h4>Omar Faruk</h4>
-              <p class="reference-position">
-                Project Manager, hSenid Business Solutions PLC
-              </p>
-              <p class="reference-contact">omar.f@hsenidbiz.com</p>
-            </div>
+              <div class="project-card__tags">
+                <span>Playwright</span>
+                <span>TypeScript</span>
+                <span>Postman</span>
+                <span>k6</span>
+                <span>OWASP ZAP</span>
+                <span>GitHub Actions</span>
+              </div>
+              <div class="project-card__features">
+                <p class="features-title">✨ Key Features:</p>
+                <ul>
+                  <li>UI Automation (POM)</li>
+                  <li>API Testing</li>
+                  <li>CI/CD Pipeline Integration</li>
+                  <li>Load &amp; Stress Testing</li>
+                  <li>Security Scanning (ZAP)</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Add more <article class="project-card"> elements here if needed -->
+
           </div>
+
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <!-- Floating Particles Background -->
-    <div class="particles" id="particles"></div>
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="wrap section__grid">
+        <header class="section__head">
+          <h2 class="section__title">Contact</h2>
+        </header>
 
-    <!-- Back to Top Button -->
-    <a href="#home" class="footer-back-to-top">
-      <i class="fas fa-arrow-up"></i>
-    </a>
+        <div class="section__body">
+          <p class="contact__lead">Available for opportunities.</p>
+          <a class="contact__email" href="mailto:wasi.wui@gmail.com">wasi.wui@gmail.com</a>
 
-    <div class="container">
-      <div class="footer-content">
-        <!-- Brand Section -->
-        <div class="footer-brand">
-          <a href="#home" class="footer-logo">
-            <div class="logo-icon">W</div>
-            <div class="footer-logo-text">Wasi Tasin</div>
-          </a>
-          <p class="footer-tagline">
-            Creating innovative digital solutions with passion and precision.
-            Let's build something amazing together.
-          </p>
-
-          <!-- Social Links -->
-          <div class="footer-social">
-            <div class="social-title">Follow Me</div>
-            <div class="social-icons">
-              <a href="https://linkedin.com/in/wasitasin" target="_blank" class="social-icon linkedin">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-              <a href="https://github.com/wasitasin" target="_blank" class="social-icon github">
-                <i class="fab fa-github"></i>
-              </a>
-              <a href="https://twitter.com/wasitasin" target="_blank" class="social-icon twitter">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="mailto:wasi.wui@gmail.com" class="social-icon email">
-                <i class="fas fa-envelope"></i>
-              </a>
+          <dl class="contact__facts">
+            <div>
+              <dt>Location</dt>
+              <dd>Dhaka, Bangladesh</dd>
             </div>
-          </div>
-        </div>
+            <div>
+              <dt>Phone</dt>
+              <dd><a href="tel:+8801644328054">+8801644328054</a></dd>
+            </div>
+          </dl>
 
-        <!-- Quick Links -->
-        <div class="footer-links-section">
-          <h3>Quick Links</h3>
-          <div class="footer-links">
-            <a href="#home" class="footer-link">
-              <i class="fas fa-home"></i>
-              Home
-            </a>
-            <a href="#about" class="footer-link">
-              <i class="fas fa-user"></i>
-              About Me
-            </a>
-            <a href="#experience" class="footer-link">
-              <i class="fas fa-briefcase"></i>
-              Experience
-            </a>
-            <a href="#projects" class="footer-link">
-              <i class="fas fa-code"></i>
-              Projects
-            </a>
-            <a href="#contact" class="footer-link">
-              <i class="fas fa-envelope"></i>
-              Contact
-            </a>
-          </div>
-        </div>
-
-        <!-- Contact Info -->
-        <div class="footer-contact">
-          <h3>Get In Touch</h3>
-          <div class="contact-info">
-            <div class="contact-item">
-              <div class="contact-icon">
-                <i class="fas fa-map-marker-alt"></i>
-              </div>
-              <div class="contact-detail">
-                <h4>Location</h4>
-                <p>Dhaka, Bangladesh</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">
-                <i class="fas fa-envelope"></i>
-              </div>
-              <div class="contact-detail">
-                <h4>Email</h4>
-                <p>wasi.wui@gmail.com</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">
-                <i class="fas fa-phone"></i>
-              </div>
-              <div class="contact-detail">
-                <h4>Phone</h4>
-                <p>+8801644328054</p>
-              </div>
-            </div>
-          </div>
+          <h3 class="subhead">References</h3>
+          <ul class="refs">
+            <li class="refs__item">
+              <h4 class="refs__name">Habibur Rahman</h4>
+              <p class="refs__role">Head of Business Operations, Quantanite Bangladesh Ltd</p>
+              <a class="refs__mail" href="mailto:Habibur.Rahman@quantanite.com">Habibur.Rahman@quantanite.com</a>
+            </li>
+            <li class="refs__item">
+              <h4 class="refs__name">Omar Faruk</h4>
+              <p class="refs__role">Project Manager, hSenid Business Solutions PLC</p>
+              <a class="refs__mail" href="mailto:omar.f@hsenidbiz.com">omar.f@hsenidbiz.com</a>
+            </li>
+          </ul>
         </div>
       </div>
+    </section>
+  </main>
 
-      <!-- Bottom Bar -->
-      <div class="footer-bottom">
-        <div class="copyright">
-          &copy; 2026 <a href="#home">Wasi Ul Islam Tasin</a>. All rights
-          reserved.
-        </div>
-        <div class="footer-legal">
-          <a href="#" class="legal-link">Privacy Policy</a>
-          <a href="#" class="legal-link">Terms of Service</a>
-          <a href="#" class="legal-link">Cookie Policy</a>
-        </div>
-      </div>
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <p>&copy; <span id="year">2026</span> Wasi Ul Islam Tasin</p>
+      <ul class="site-footer__links">
+        <li><a href="https://www.linkedin.com/in/wasi-ul-islam-t-491171162/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/koeffingdaal" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="#home">Back to top</a></li>
+      </ul>
     </div>
   </footer>
-
-  <!-- Back to Top Button -->
-  <a href="#home" class="back-to-top">
-    <i class="fas fa-arrow-up"></i>
-  </a>
 
   <script src="script.js"></script>
 </body>
